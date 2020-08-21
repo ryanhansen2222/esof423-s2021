@@ -17,7 +17,7 @@ Please use the following steps to create a *private* version of this repo for yo
     - Add `1cg` as a collaborator
 - Now run the following git commands, substituting your Github user name and NetID where required:
 ```bash
-$ git clone https://github.com/msu/csci-440-fall2020.git
+$ git clone https://github.com/msu/csci-440-fall2020.git csci-440-fall2020-private
 $ cd csci-440-fall2020
 $ git remote set-url origin git@github.com:<YOUR GITHUB USER NAME>/csci-440-fall2020-private.git
 $ git remote add upstream https://github.com/msu/csci-440-fall2020.git
