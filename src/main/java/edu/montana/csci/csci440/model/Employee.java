@@ -16,7 +16,7 @@ public class Employee {
         email = results.getString("Email");
     }
 
-    public static Iterable<Employee> all() {
+    public static Iterable<Employee> all(int page, int count) {
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:db/chinook.db");
              Statement stmt = conn.createStatement()) {
             ResultSet results = stmt.executeQuery("SELECT * FROM employees");
