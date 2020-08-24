@@ -1,1 +1,1 @@
-https://github.com/aukehoe/csci-440-fall2020-private
+git@github.com:aukehoe/csci-440-fall2020-private.git
