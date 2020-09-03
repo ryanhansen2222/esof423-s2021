@@ -19,7 +19,7 @@ public class Employee extends Model {
         email = results.getString("Email");
     }
 
-    public static Iterable<Employee> all(int page, int count) {
+    public static List<Employee> all(int page, int count) {
         try (Connection conn = DB.connect();
              Statement stmt = conn.createStatement()) {
             ResultSet results = stmt.executeQuery("SELECT * FROM employees");
