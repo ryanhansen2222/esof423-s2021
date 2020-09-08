@@ -69,7 +69,7 @@ The web application will be an open-ended project, but must include the followin
 * At least one report-like page must exist that makes use of a `GROUP BY` clause
 * Implement at least one Redis cache
 
-## Project Rubric
+### Project Rubric
 
 The project will be largely graded via automated tests.  The grading will be broken down along the following lines:
 
