@@ -10,12 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Homework2 extends DBTest {
 
     @Test
+    /*
+     * Write a query in the string below that returns all artists that have an 'A' in their name
+     */
     void selectArtistsWhoseNameHasAnAInIt(){
         List<Map<String, Object>> results = executeSQL("SELECT * FROM artists");
         assertEquals(211, results.size());
     }
 
     @Test
+    /*
+     * Write a query in the string below that returns all artists that have more than one album
+     */
     void selectAllArtistsWithMoreThanOneAlbum(){
         List<Map<String, Object>> results = executeSQL(
                 "SELECT * FROM artists");
@@ -25,6 +31,10 @@ public class Homework2 extends DBTest {
     }
 
     @Test
+        /*
+         * Write a query in the string below that returns all tracks longer than six minutes along with the
+         * album and artist name
+         */
     void selectTheTrackAndAlbumAndArtistForAllTracksLongerThanSixMinutes() {
         List<Map<String, Object>> results = executeSQL(
                 "SELECT tracks.Name as TrackName, albums.Title as AlbumTitle, artists.Name as ArtistsName FROM tracks " +
