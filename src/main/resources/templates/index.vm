@@ -1,32 +1,6 @@
 #parse('templates/header.vm')
 
-<h1><img src="https://avatars2.githubusercontent.com/u/67816555?s=50&v=4"> CS 440 - Databases</h1>
-
 <p>Welcome to the CS 440 Database web project.</p>
+<p>You can use the navigation above to look at various entities in the chinook.db</p>
 
-<h3>Today's Message: $message</h3>
-
-<h3>Employees</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Employee ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-    </tr>
-    </thead>
-    <tbody>
-        #foreach( $employee in $employees )
-        <tr>
-            <td><a href="/employees/$employee.EmployeeId">$employee.EmployeeId</a></td>
-            <td>$employee.FirstName</td>
-            <td>$employee.LastName</td>
-            <td>$employee.Email</td>
-        </tr>
-        #end
-    </tbody>
-</table>
-
-#parse('templates/header.vm')
+#parse('templates/footer.vm')
