@@ -27,12 +27,6 @@ class Server {
         /* Employee                                                                  */
         /* ========================================================================= */
 
-        /* List All */
-        get("/employees", (req, resp) -> {
-            List<Employee> employees = Employee.all(1, 10);
-            return Web.renderTemplate("templates/employees/index.vm", "employees", employees);
-        });
-
         /* CREATE */
         get("/employees/new", (req, resp) -> {
             Employee employee = new Employee();
@@ -48,18 +42,29 @@ class Server {
                 return "";
             } else {
                 Web.message("Could Not Create An Employee!");
-                return Web.renderTemplate("templates/employees/new.vm", "employee", emp);
+                return Web.renderTemplate("templates/employees/new.vm",
+                        "employee", emp);
             }
         });
 
         /* READ */
-        get("/employees/:id", (req, resp) -> Web.renderTemplate("templates/employees/show.vm",
-                "employee", Employee.find(Integer.parseInt(req.params(":id")))));
+        get("/employees", (req, resp) -> {
+            List<Employee> employees = Employee.all(1, 10);
+            return Web.renderTemplate("templates/employees/index.vm",
+                    "employees", employees);
+        });
+
+        get("/employees/:id", (req, resp) -> {
+            Employee employee = Employee.find(Integer.parseInt(req.params(":id")));
+            return Web.renderTemplate("templates/employees/show.vm",
+                    "employee", employee);
+        });
 
         /* UPDATE */
         get("/employees/:id/edit", (req, resp) -> {
             Employee employee = Employee.find(Integer.parseInt(req.params(":id")));
-            return Web.renderTemplate("templates/employees/edit.vm", "employee", employee);
+            return Web.renderTemplate("templates/employees/edit.vm",
+                    "employee", employee);
         });
 
         post("/employees/:id", (req, resp) -> {
@@ -71,7 +76,8 @@ class Server {
                 return "";
             } else {
                 Web.message("Could Not Update Employee!");
-                return Web.renderTemplate("templates/employees/edit.vm", "employee", emp);
+                return Web.renderTemplate("templates/employees/edit.vm",
+                        "employee", emp);
             }
         });
 

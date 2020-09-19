@@ -22,5 +22,6 @@
     <h4 style="color:red">$!message</h4>
 
     <a href="/">Home</a> | <a href="/employees">Employees</a> | <a href="/tracks">Tracks</a> | <a href="/artists">Artists</a>
+    | <a href="/playlists">Playlists</a> | <a href="/customers">Customers</a> | <a href="/invoices">Invoices</a>
 
     <hr/>
