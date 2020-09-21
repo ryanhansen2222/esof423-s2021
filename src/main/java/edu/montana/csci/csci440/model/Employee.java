@@ -123,11 +123,8 @@ public class Employee extends Model {
 
     public static List<Employee> all(int page, int count) {
         try (Connection conn = DB.connect();
-             PreparedStatement stmt = conn.prepareStatement(
-                     "SELECT * FROM employees LIMIT ?"
-             )) {
-            stmt.setInt(1, count);
-            ResultSet results = stmt.executeQuery();
+             Statement stmt = conn.createStatement()) {
+            ResultSet results = stmt.executeQuery("SELECT * FROM employees");
             List<Employee> resultList = new LinkedList<>();
             while (results.next()) {
                 resultList.add(new Employee(results));
