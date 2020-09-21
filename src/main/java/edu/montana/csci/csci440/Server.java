@@ -1,5 +1,7 @@
 package edu.montana.csci.csci440;
 
+import edu.montana.csci.csci440.model.Album;
+import edu.montana.csci.csci440.model.Artist;
 import edu.montana.csci.csci440.model.Employee;
 import edu.montana.csci.csci440.model.Track;
 import edu.montana.csci.csci440.util.Web;
@@ -45,7 +47,7 @@ class Server {
         });
 
         /* ========================================================================= */
-        /* Employee                                                                  */
+        /* Employees
         /* ========================================================================= */
         {
             /* CREATE */
@@ -110,13 +112,13 @@ class Server {
         }
 
         /* ========================================================================= */
-        /* Tracks                                                                  */
+        /* Tracks 
         /* ========================================================================= */
         {
             /* CREATE */
             get("/tracks/new", (req, resp) -> {
                 Track track = new Track();
-                return Web.renderTemplate("templates/tracks/new.vm", "employee", track);
+                return Web.renderTemplate("templates/tracks/new.vm", "album", track);
             });
 
             post("/tracks/new", (req, resp) -> {
@@ -174,7 +176,135 @@ class Server {
             });
         }
 
+        /* ========================================================================= */
+        /* Albums
+        /* ========================================================================= */
+        {
+            /* CREATE */
+            get("/albums/new", (req, resp) -> {
+                Album album = new Album();
+                return Web.renderTemplate("templates/albums/new.vm", "album", album);
+            });
 
+            post("/albums/new", (req, resp) -> {
+                Album album = new Album();
+                Web.putValuesInto(album, "Title");
+                if (album.create()) {
+                    Web.message("Created A Album!");
+                    return Web.redirect("/albums/" + album.getAlbumId());
+                } else {
+                    Web.error("Could Not Create A Album!");
+                    return Web.renderTemplate("templates/albums/new.vm",
+                            "album", album);
+                }
+            });
+
+            /* READ */
+            get("/albums", (req, resp) -> {
+                List<Album> albums = Album.all(1, 10);
+                return Web.renderTemplate("templates/albums/index.vm",
+                        "albums", albums);
+            });
+
+            get("/albums/:id", (req, resp) -> {
+                Album album = Album.find(Integer.parseInt(req.params(":id")));
+                return Web.renderTemplate("templates/albums/show.vm",
+                        "album", album);
+            });
+
+            /* UPDATE */
+            get("/albums/:id/edit", (req, resp) -> {
+                Album album = Album.find(Integer.parseInt(req.params(":id")));
+                return Web.renderTemplate("templates/albums/edit.vm",
+                        "album", album);
+            });
+
+            post("/albums/:id", (req, resp) -> {
+                Album album = Album.find(Integer.parseInt(req.params(":id")));
+                Web.putValuesInto(album, "Title");
+                if (album.update()) {
+                    Web.message("Updated Album!");
+                    return Web.redirect("/albums/" + album.getAlbumId());
+                } else {
+                    Web.error("Could Not Update Employee!");
+                    return Web.renderTemplate("templates/albums/edit.vm",
+                            "album", album);
+                }
+            });
+
+            /* DELETE */
+            get("/albums/:id/delete", (req, resp) -> {
+                Album album = Album.find(Integer.parseInt(req.params(":id")));
+                album.delete();
+                Web.message("Deleted Album " + album.getTitle());
+                return Web.redirect("/albums");
+            });
+        }        
+        
+        /* ========================================================================= */
+        /* Artists
+        /* ========================================================================= */
+        {
+            /* CREATE */
+            get("/artists/new", (req, resp) -> {
+                Artist artist = new Artist();
+                return Web.renderTemplate("templates/artists/new.vm", "artist", artist);
+            });
+
+            post("/artists/new", (req, resp) -> {
+                Artist artist = new Artist();
+                Web.putValuesInto(artist, "Name");
+                if (artist.create()) {
+                    Web.message("Created A Artist!");
+                    return Web.redirect("/artists/" + artist.getArtistId());
+                } else {
+                    Web.error("Could Not Create A Artist!");
+                    return Web.renderTemplate("templates/artists/new.vm",
+                            "artist", artist);
+                }
+            });
+
+            /* READ */
+            get("/artists", (req, resp) -> {
+                List<Artist> artists = Artist.all(1, 10);
+                return Web.renderTemplate("templates/artists/index.vm",
+                        "artists", artists);
+            });
+
+            get("/artists/:id", (req, resp) -> {
+                Artist artist = Artist.find(Integer.parseInt(req.params(":id")));
+                return Web.renderTemplate("templates/artists/show.vm",
+                        "artist", artist);
+            });
+
+            /* UPDATE */
+            get("/artists/:id/edit", (req, resp) -> {
+                Artist artist = Artist.find(Integer.parseInt(req.params(":id")));
+                return Web.renderTemplate("templates/artists/edit.vm",
+                        "artist", artist);
+            });
+
+            post("/artists/:id", (req, resp) -> {
+                Artist artist = Artist.find(Integer.parseInt(req.params(":id")));
+                Web.putValuesInto(artist, "Name");
+                if (artist.update()) {
+                    Web.message("Updated Artist!");
+                    return Web.redirect("/artists/" + artist.getArtistId());
+                } else {
+                    Web.error("Could Not Update Employee!");
+                    return Web.renderTemplate("templates/artists/edit.vm",
+                            "artist", artist);
+                }
+            });
+
+            /* DELETE */
+            get("/artists/:id/delete", (req, resp) -> {
+                Artist artist = Artist.find(Integer.parseInt(req.params(":id")));
+                artist.delete();
+                Web.message("Deleted Artist " + artist.getName());
+                return Web.redirect("/artists");
+            });
+        }
     }
 
 }
