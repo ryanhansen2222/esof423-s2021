@@ -31,7 +31,7 @@ public class EmployeesController {
 
         /* READ */
         get("/employees", (req, resp) -> {
-            List<Employee> employees = Employee.all(1, 10);
+            List<Employee> employees = Employee.all(1, Integer.parseInt(req.queryParams("count")));
             return Web.renderTemplate("templates/employees/index.vm",
                     "employees", employees);
         });
