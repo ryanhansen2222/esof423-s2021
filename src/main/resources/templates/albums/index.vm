@@ -19,6 +19,10 @@
     </tbody>
 </table>
 
+<div>
+    $web.prevPage() -- $web.nextPage($albums)
+</div>
+
 <a href="/albums/new">[Create New Album]</a>
 
 #parse('templates/footer.vm')

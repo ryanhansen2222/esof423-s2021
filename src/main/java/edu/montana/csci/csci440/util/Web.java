@@ -6,27 +6,35 @@ import spark.Response;
 import spark.Session;
 import spark.template.velocity.VelocityTemplateEngine;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Objects;
+import java.util.List;
+
+import static spark.Spark.*;
 
 public class Web {
 
-    static ThreadLocal<Request> _request = new ThreadLocal<>();
-    static ThreadLocal<Response> _response = new ThreadLocal<>();
-    static ThreadLocal<Exception> _exception = new ThreadLocal<>();
+    public static final int PAGE_SIZE = 10;
+    private static Web INSTANCE = new Web();
+    static ThreadLocal<Request> REQ = new ThreadLocal<>();
+    static ThreadLocal<Response> RESP = new ThreadLocal<>();
+    static ThreadLocal<Long> TIMESTAMP = new ThreadLocal<>();
 
-    public static void set(Request request, Response response) {
-        _request.set(request);
-        _response.set(response);
+    public static void set(Request request, Response response, long startTime) {
+        REQ.set(request);
+        RESP.set(response);
+        TIMESTAMP.set(startTime);
     }
 
     public static Request getRequest(){
-        return _request.get();
+        return REQ.get();
     }
-    public static Response getResponse(){ return _response.get(); }
+    public static Response getResponse(){ return RESP.get(); }
 
     public static String renderTemplate(String index, Object... args) {
         HashMap<Object, Object> map = new HashMap<>();
@@ -38,6 +46,7 @@ public class Web {
         }
         map.put("message", getMessage());
         map.put("error", getError());
+        map.put("web", INSTANCE);
         return new VelocityTemplateEngine().render(new ModelAndView(map, index));
     }
 
@@ -58,6 +67,9 @@ public class Web {
                 }
                 if (method.getParameterTypes()[0] == String.class) {
                     method.invoke(obj, req.queryParams(property));
+                }
+                if (method.getParameterTypes()[0] == BigDecimal.class) {
+                    method.invoke(obj, new BigDecimal(req.queryParams(property)));
                 }
             }
         } catch (Exception e) {
@@ -102,11 +114,60 @@ public class Web {
         return "";
     }
 
-    public static void setException(Exception e) {
-        _exception.set(e);
+    public String nextPage(List collection){
+        if (collection.size() == PAGE_SIZE) {
+            Integer page = getPage();
+            return "<a href='" + getRequest().pathInfo() + "?page=" + (page + 1) + "'>Next Page &gt;&gt;</a>";
+        } else {
+            return "";
+        }
     }
 
-    public static Exception getException() {
-        return _exception.get();
+    public static Integer getPage(){
+        String page = getRequest().queryParams("page");
+        if (page != null) {
+            return Integer.parseInt(page);
+        } else {
+            return 1;
+        }
     }
+
+    public String prevPage() {
+        Integer page = getPage();
+        if (page > 2) {
+            return "<a href='" + getRequest().pathInfo() + "?page=" + (page - 1) + "'>&lt;&lt;  Previous Page</a>";
+        } else if (page == 2) {
+            return "<a href='" + getRequest().pathInfo() + "'>&lt;&lt;  Previous Page</a>";
+        } else {
+            return "";
+        }
+    }
+
+    public static void init() {
+        before((request, response) -> {
+            System.out.println(">> REQUEST " + request.requestMethod() + " " + request.pathInfo());
+            Web.set(request, response, System.currentTimeMillis());
+        });
+        after((request, response) -> {
+            Long aLong = TIMESTAMP.get();
+            System.out.println("  << REQUEST " + request.requestMethod() + " " + request.pathInfo() + " completed in " + ((System.currentTimeMillis() - TIMESTAMP.get()) / 1000.0) + " seconds");
+        });
+
+        exception(Exception.class, (e, request, response) -> {
+            System.out.println("################################################################");
+            System.out.println("#  ERROR ");
+            System.out.println("################################################################");
+            System.out.println("An error occured: " + e.getMessage());
+            e.printStackTrace();
+
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            response.status(500);
+            response.body(Web.renderTemplate("templates/error.vm",
+                    "error", e,
+                    "stacktrace", sw.getBuffer().toString()));
+        });
+    }
+
 }

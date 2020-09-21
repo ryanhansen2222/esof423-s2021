@@ -25,6 +25,10 @@
     </tbody>
 </table>
 
+<div>
+    $web.prevPage() -- $web.nextPage($tracks)
+</div>
+
 <a href="/tracks/new">[Create New Track]</a>
 
 #parse('templates/footer.vm')

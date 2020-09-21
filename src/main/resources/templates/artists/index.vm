@@ -19,6 +19,10 @@
     </tbody>
 </table>
 
+<div>
+    $web.prevPage() -- $web.nextPage($artists)
+</div>
+
 <a href="/artists/new">[Create New Artist]</a>
 
 #parse('templates/footer.vm')

@@ -22,6 +22,8 @@
         #end
     </tbody>
 </table>
+$web.prevPage() -- $web.nextPage($employees)
+<br/><br/>
 
 <a href="/employees/new">[Create New Employee]</a>
 
