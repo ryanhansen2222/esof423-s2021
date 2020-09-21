@@ -69,11 +69,20 @@ public class Web {
                     method.invoke(obj, req.queryParams(property));
                 }
                 if (method.getParameterTypes()[0] == BigDecimal.class) {
-                    method.invoke(obj, new BigDecimal(req.queryParams(property)));
+                    method.invoke(obj, parseBigDecimal(req, property));
                 }
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private static BigDecimal parseBigDecimal(Request req, String property) {
+        try {
+            return new BigDecimal(req.queryParams(property));
+        } catch (Exception e) {
+            // formatting exception, return null
+            return null;
         }
     }
 
@@ -112,6 +121,18 @@ public class Web {
     public static Object redirect(String location) {
         getResponse().redirect(location);
         return "";
+    }
+
+    public String pagingWidget(List collection) {
+        String div = "<div style='padding-bottom:12px'>";
+        String prev = prevPage();
+        String next = nextPage(collection);
+        if (prev.equals("")) {
+            div += next;
+        } else {
+            div += prev + " &#9679; Page " + getPage() + " &#9679; " + next;
+        }
+        return div + "</div>";
     }
 
     public String nextPage(List collection){

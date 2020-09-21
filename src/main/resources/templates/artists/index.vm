@@ -19,9 +19,8 @@
     </tbody>
 </table>
 
-<div>
-    $web.prevPage() -- $web.nextPage($artists)
-</div>
+$web.pagingWidget($artists)
+
 
 <a href="/artists/new">[Create New Artist]</a>
 

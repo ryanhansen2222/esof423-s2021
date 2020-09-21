@@ -29,9 +29,7 @@
     </tbody>
 </table>
 
-<div>
-    $web.prevPage() -- $web.nextPage($invoices)
-</div>
+$web.pagingWidget($invoices)
 
 
 #parse('templates/footer.vm')

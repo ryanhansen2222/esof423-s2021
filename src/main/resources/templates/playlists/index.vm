@@ -19,9 +19,7 @@
     </tbody>
 </table>
 
-<div>
-    $web.prevPage() -- $web.nextPage($playlists)
-</div>
+$web.pagingWidget($playlists)
 
 <a href="/playlists/new">[Create New Playlist]</a>
 

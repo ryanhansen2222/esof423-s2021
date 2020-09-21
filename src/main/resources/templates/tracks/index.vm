@@ -25,9 +25,7 @@
     </tbody>
 </table>
 
-<div>
-    $web.prevPage() -- $web.nextPage($tracks)
-</div>
+$web.pagingWidget($tracks)
 
 <a href="/tracks/new">[Create New Track]</a>
 

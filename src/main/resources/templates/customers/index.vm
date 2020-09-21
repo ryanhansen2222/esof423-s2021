@@ -23,9 +23,7 @@
     </tbody>
 </table>
 
-<div>
-    $web.prevPage() -- $web.nextPage($customers)
-</div>
+$web.pagingWidget($customers)
 
 
 <a href="/customers/new">[Create New Customer]</a>

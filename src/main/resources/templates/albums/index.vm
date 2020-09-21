@@ -19,9 +19,7 @@
     </tbody>
 </table>
 
-<div>
-    $web.prevPage() -- $web.nextPage($albums)
-</div>
+$web.pagingWidget($albums)
 
 <a href="/albums/new">[Create New Album]</a>
 
