@@ -2,6 +2,7 @@ package edu.montana.csci.csci440.util;
 
 import spark.ModelAndView;
 import spark.Request;
+import spark.Response;
 import spark.Session;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -14,14 +15,18 @@ import java.util.Objects;
 public class Web {
 
     static ThreadLocal<Request> _request = new ThreadLocal<>();
+    static ThreadLocal<Response> _response = new ThreadLocal<>();
+    static ThreadLocal<Exception> _exception = new ThreadLocal<>();
 
-    public static void setReq(Request request) {
+    public static void set(Request request, Response response) {
         _request.set(request);
+        _response.set(response);
     }
 
     public static Request getRequest(){
         return _request.get();
     }
+    public static Response getResponse(){ return _response.get(); }
 
     public static String renderTemplate(String index, Object... args) {
         HashMap<Object, Object> map = new HashMap<>();
@@ -32,6 +37,7 @@ public class Web {
             }
         }
         map.put("message", getMessage());
+        map.put("error", getError());
         return new VelocityTemplateEngine().render(new ModelAndView(map, index));
     }
 
@@ -80,4 +86,27 @@ public class Web {
         return message;
     }
 
+    public static void error(String s) {
+        getRequest().session().attribute(":error", s);
+    }
+
+    public static String getError() {
+        Session session = getRequest().session();
+        String message = session.attribute(":error");
+        session.removeAttribute(":message");
+        return message;
+    }
+
+    public static Object redirect(String location) {
+        getResponse().redirect(location);
+        return "";
+    }
+
+    public static void setException(Exception e) {
+        _exception.set(e);
+    }
+
+    public static Exception getException() {
+        return _exception.get();
+    }
 }
