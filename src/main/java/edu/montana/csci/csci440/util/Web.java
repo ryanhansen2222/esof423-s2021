@@ -164,15 +164,31 @@ public class Web {
         }
     }
 
-    public String select(String model, String displayProperty) throws Exception {
+    public String select(String model, String displayProperty, Integer selected) throws Exception {
+        return select(model, displayProperty, selected, false);
+    }
+
+    public String select(String model, String displayProperty, Object selectedId, boolean includeEmpty) throws Exception {
         String select = "<select style='max-width:200px' name='" + model + "Id'>\n";
         Class<?> clazz = Class.forName("edu.montana.csci.csci440.model." + model);
         Method all = clazz.getMethod("all");
         List invoke = (List) all.invoke(null);
         Method idGetter = clazz.getMethod("get" + model + "Id");
         Method displayGetter = clazz.getMethod("get" + displayProperty);
+        if (includeEmpty) {
+            select += "<option></option>";
+        }
         for (Object o : invoke) {
-            select += "  <option value='" + idGetter.invoke(o) + "'>" +
+            Object idValue = idGetter.invoke(o);
+            String selectedString;
+            if (idValue != null &&
+                    selectedId != null &&
+                    idValue.toString().equals(selectedId.toString())) {
+                selectedString = " selected";
+            } else {
+                selectedString = "";
+            }
+            select += "  <option value='" + idValue + "' " + selectedString + ">" +
                     displayGetter.invoke(o) +
                     "</option>\n";
         }

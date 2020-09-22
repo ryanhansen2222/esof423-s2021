@@ -43,6 +43,15 @@ public class TracksController {
                     "tracks", tracks);
         });
 
+        get("/tracks/search", (req, resp) -> {
+            String search = req.queryParams("q");
+            List<Track> tracks;
+            tracks = Track.advancedSearch(Web.getPage(), Web.PAGE_SIZE, search, null, null,
+                    null, null);
+            return Web.renderTemplate("templates/tracks/search.vm",
+                    "tracks", tracks);
+        });
+
         get("/tracks/:id", (req, resp) -> {
             Track track = Track.find(Integer.parseInt(req.params(":id")));
             return Web.renderTemplate("templates/tracks/show.vm",
