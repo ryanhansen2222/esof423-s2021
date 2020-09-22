@@ -104,21 +104,30 @@ public class Track extends Model {
         this.unitPrice = unitPrice;
     }
 
-    public static List<Track> all(int page, int count, String search) {
-        String query = "SELECT * FROM tracks ";
-        if (search != null) {
-            search = "%" + search + "%";
-            query = query + " WHERE name LIKE ?";
-        }
-        query += " LIMIT ?";
+    public static List<Track> search(int page, int count, String search) {
+        String query = "SELECT * FROM tracks WHERE name LIKE ? LIMIT ?";
+        search = "%" + search + "%";
         try (Connection conn = DB.connect();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            if (search != null) {
-                stmt.setString(1, search);
-                stmt.setInt(2, count);
-            } else {
-                stmt.setInt(1, count);
+            stmt.setString(1, search);
+            stmt.setInt(2, count);
+            ResultSet results = stmt.executeQuery();
+            List<Track> resultList = new LinkedList<>();
+            while (results.next()) {
+                resultList.add(new Track(results));
             }
+            return resultList;
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
+        }
+    }
+
+    public static List<Track> all(int page, int count) {
+        try (Connection conn = DB.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "SELECT * FROM tracks LIMIT ?"
+             )) {
+            stmt.setInt(1, count);
             ResultSet results = stmt.executeQuery();
             List<Track> resultList = new LinkedList<>();
             while (results.next()) {
