@@ -164,6 +164,26 @@ public class Web {
         }
     }
 
+    public String select(String model, String displayProperty) throws Exception {
+        String select = "<select style='max-width:200px' name='" + model + "Id'>\n";
+        Class<?> clazz = Class.forName("edu.montana.csci.csci440.model." + model);
+        Method all = clazz.getMethod("all");
+        List invoke = (List) all.invoke(null);
+        Method idGetter = clazz.getMethod("get" + model + "Id");
+        Method displayGetter = clazz.getMethod("get" + displayProperty);
+        for (Object o : invoke) {
+            select += "  <option value='" + idGetter.invoke(o) + "'>" +
+                    displayGetter.invoke(o) +
+                    "</option>\n";
+        }
+        select += "</select>\n";
+        return select;
+    }
+
+    public String param(String name) {
+        return getRequest().queryParams(name);
+    }
+
     public static void init() {
         before((request, response) -> {
             System.out.println(">> REQUEST " + request.requestMethod() + " " + request.pathInfo());

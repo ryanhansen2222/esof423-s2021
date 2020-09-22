@@ -32,7 +32,8 @@ public class TracksController {
 
         /* READ */
         get("/tracks", (req, resp) -> {
-            List<Track> tracks = Track.all(Web.getPage(), Web.PAGE_SIZE);
+            String search = req.queryParams("q");
+            List<Track> tracks = Track.all(Web.getPage(), Web.PAGE_SIZE, search);
             return Web.renderTemplate("templates/tracks/index.vm",
                     "tracks", tracks);
         });
