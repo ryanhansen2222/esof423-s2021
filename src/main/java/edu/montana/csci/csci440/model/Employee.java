@@ -66,7 +66,7 @@ public class Employee extends Model {
                 stmt.setString(2, this.getLastName());
                 stmt.setString(3, this.getEmail());
                 stmt.executeUpdate();
-                employeeId = DB.getLastID();
+                employeeId = DB.getLastID(conn);
                 return true;
             } catch (SQLException sqlException) {
                 throw new RuntimeException(sqlException);

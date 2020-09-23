@@ -23,13 +23,13 @@
             </tr>
             <tr>
                 <td>Runtime (Min Seconds)</td>
-                <td><input type="text" placeholder="Minimum Runtime"
+                <td><input type="number" placeholder="Minimum Runtime"
                            name="min"
                            value="$!web.param('min')"></td>
             </tr>
             <tr>
                 <td>Runtime (Max Seconds)</td>
-                <td><input type="text" placeholder="Maximum Runtime"
+                <td><input type="number" placeholder="Maximum Runtime"
                            name="max"
                            value="$!web.param('max')"></td>
             </tr>

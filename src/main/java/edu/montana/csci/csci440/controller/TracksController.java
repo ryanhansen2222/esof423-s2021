@@ -46,8 +46,12 @@ public class TracksController {
         get("/tracks/search", (req, resp) -> {
             String search = req.queryParams("q");
             List<Track> tracks;
-            tracks = Track.advancedSearch(Web.getPage(), Web.PAGE_SIZE, search, null, null,
-                    null, null);
+            tracks = Track.advancedSearch(Web.getPage(), Web.PAGE_SIZE,
+                    search,
+                    Web.integerOrNull("ArtistId"),
+                    Web.integerOrNull("AlbumId"),
+                    Web.integerOrNull("max"),
+                    Web.integerOrNull("min"));
             return Web.renderTemplate("templates/tracks/search.vm",
                     "tracks", tracks);
         });

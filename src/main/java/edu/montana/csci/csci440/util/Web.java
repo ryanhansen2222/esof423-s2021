@@ -114,13 +114,26 @@ public class Web {
     public static String getError() {
         Session session = getRequest().session();
         String message = session.attribute(":error");
-        session.removeAttribute(":message");
+        session.removeAttribute(":error");
         return message;
     }
 
     public static Object redirect(String location) {
         getResponse().redirect(location);
         return "";
+    }
+
+    public static Integer integerOrNull(String paramName) {
+        return integerOr(paramName, null);
+    }
+
+    private static Integer integerOr(String paramName, Integer defaultValue) {
+        String val = getRequest().queryParams(paramName);
+        if (val != null && !val.equals("")) {
+            return Integer.parseInt(val);
+        } else {
+            return defaultValue;
+        }
     }
 
     public String pagingWidget(List collection) {
