@@ -114,8 +114,22 @@ public class Employee extends Model {
     public List<Customer> getCustomers() {
         return Collections.emptyList();
     }
+
     public List<Employee> getReports() {
-        return Collections.emptyList();
+        try (Connection conn = DB.connect();
+             PreparedStatement stmt = conn.prepareStatement(
+                     "SELECT * FROM employees WHERE ReportsTo=?"
+             )) {
+            stmt.setLong(1, this.getEmployeeId());
+            ResultSet results = stmt.executeQuery();
+            List<Employee> resultList = new LinkedList<>();
+            while (results.next()) {
+                resultList.add(new Employee(results));
+            }
+            return resultList;
+        } catch (SQLException sqlException) {
+            throw new RuntimeException(sqlException);
+        }
     }
     public Employee getBoss() {
         return null;
