@@ -46,6 +46,12 @@ public class EmployeesController {
                     "employeeTree", employeeTree);
         });
 
+        get("/employees/sales", (request, response) -> {
+            List<Employee.SalesSummary> salesInfo = Employee.getSalesSummaries();
+            return Web.renderTemplate("templates/employees/sales.vm",
+                    "salesInfo", salesInfo);
+        });
+
         get("/employees/:id", (req, resp) -> {
             Employee employee = Employee.find(Integer.parseInt(req.params(":id")));
             return Web.renderTemplate("templates/employees/show.vm",
