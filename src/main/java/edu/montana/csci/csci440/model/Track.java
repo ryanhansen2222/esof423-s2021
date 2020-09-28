@@ -55,8 +55,7 @@ public class Track extends Model {
     }
 
     public Album getAlbum() {
-        // TODO implement
-        return null;
+        return Album.find(albumId);
     }
 
     public MediaType getMediaType() {
