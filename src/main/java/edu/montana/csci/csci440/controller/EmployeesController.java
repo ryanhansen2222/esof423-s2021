@@ -4,7 +4,9 @@ import edu.montana.csci.csci440.helpers.EmployeeHelper;
 import edu.montana.csci.csci440.model.Employee;
 import edu.montana.csci.csci440.util.Web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -38,10 +40,12 @@ public class EmployeesController {
         });
 
         get("/employees/tree", (request, response) -> {
-            // TODO, you will need to change this to a different data structure
-            // to make this a single query operation
+            // TODO, change this to use a single query operation to get all employees
             Employee employee = Employee.find(1); // root employee
-            String employeeTree = EmployeeHelper.makeTreeRoot(employee);
+            // and use this data structure to maintain reference information needed to build the tree structure
+            Map<Long, List<Employee>> employeeMap = new HashMap<>();
+
+            String employeeTree = EmployeeHelper.makeTreeRoot(employee, employeeMap);
             return Web.renderTemplate("templates/employees/tree.vm",
                     "employeeTree", employeeTree);
         });

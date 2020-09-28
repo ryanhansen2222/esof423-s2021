@@ -151,7 +151,16 @@ public class Web {
     public String nextPage(List collection){
         if (collection.size() == PAGE_SIZE) {
             Integer page = getPage();
-            return "<a href='" + getRequest().pathInfo() + "?page=" + (page + 1) + "'>Next Page &gt;&gt;</a>";
+            return "<a href='" + getRequest().pathInfo() + "?page=" + (page + 1) + getOrderBy() + "'>Next Page &gt;&gt;</a>";
+        } else {
+            return "";
+        }
+    }
+
+    private String getOrderBy() {
+        String o = getRequest().queryParams("o");
+        if (o != null && !"".equals(o)) {
+            return "&o=" + o;
         } else {
             return "";
         }
@@ -169,9 +178,9 @@ public class Web {
     public String prevPage() {
         Integer page = getPage();
         if (page > 2) {
-            return "<a href='" + getRequest().pathInfo() + "?page=" + (page - 1) + "'>&lt;&lt;  Previous Page</a>";
+            return "<a href='" + getRequest().pathInfo() + "?page=" + (page - 1) + getOrderBy() + "'>&lt;&lt;  Previous Page</a>";
         } else if (page == 2) {
-            return "<a href='" + getRequest().pathInfo() + "'>&lt;&lt;  Previous Page</a>";
+            return "<a href='" + getRequest().pathInfo() + "?" + getOrderBy() + "'>&lt;&lt;  Previous Page</a>";
         } else {
             return "";
         }
