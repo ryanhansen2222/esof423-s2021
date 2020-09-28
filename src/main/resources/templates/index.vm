@@ -30,7 +30,7 @@
     <li><code>Albums.validate()</code></li>
     <li>A Simple Search that includes artist name and album title in the search criteria</li>
     <li>Implement advanced search with at least three fields to search by</li>
-    <li>Tracks should include Artist and Album name in display</li>
+    <li>Tracks should include Artist and Album name in display, in a query-efficient manner</li>
     <li>Implment "Order By" headers in list view</li>
     <li>Extra Credit: Make Simple Search Live Search</li>
 </ul>
