@@ -29,7 +29,11 @@ public class Track extends Model {
     public static final String REDIS_CACHE_KEY = "cs440-tracks-count-cache";
 
     public Track() {
-        // new track for insert
+        mediaTypeId = 1l;
+        genreId = 1l;
+        milliseconds  = 0l;
+        bytes  = 0l;
+        unitPrice = new BigDecimal("0");
     }
 
     private Track(ResultSet results) throws SQLException {
