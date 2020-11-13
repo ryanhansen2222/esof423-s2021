@@ -49,3 +49,4 @@ CREATE TABLE albums_bak
         REFERENCES artists (ArtistId)
         ON DELETE SET NULL
 ) ;
+
