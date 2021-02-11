@@ -82,6 +82,14 @@ public class CatScriptTokenizer {
             tokenList.addToken(PLUS, "+", start, postion, line, lineOffset);
         } else if(matchAndConsume('-')) {
             tokenList.addToken(MINUS, "-", start, postion, line, lineOffset);
+        } else if(matchAndConsume('/')) {
+            if (matchAndConsume('/')) {
+                while (peek() != '\n' && !tokenizationEnd()) {
+                    takeChar();
+                }
+            } else {
+                tokenList.addToken(SLASH, "-", start, postion, line, lineOffset);
+            }
         } else if(matchAndConsume('=')) {
             if (matchAndConsume('=')) {
                 tokenList.addToken(EQUAL_EQUAL, "==", start, postion, line, lineOffset);
@@ -151,5 +159,16 @@ public class CatScriptTokenizer {
 
     public TokenList getTokens() {
         return tokenList;
+    }
+
+    @Override
+    public String toString() {
+        if (tokenizationEnd()) {
+            return src + "-->[]<--";
+        } else {
+            return src.substring(0, postion) + "-->[" + peek() + "]<--" +
+                    ((postion == src.length() - 1) ? "" :
+                            src.substring(postion + 1, src.length() - 1));
+        }
     }
 }
