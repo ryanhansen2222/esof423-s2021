@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello Adonis</title>
+  {{ style('style') }}
+
+  @!section('extracss')
+
+  <title>
+    @!section('title')
+  </title>
+</head>
+<body>
+  <header>
+    <a href="/" id="logo">LOGO</a>
+    <nav>
+      <ul>
+        <li><a href="/tab1">Tab1</a></li>
+        <li><a href="/tab2">Tab2</a></li>
+        <li><a href="/tab3">Tab3</a></li>
+      </ul>
+
+
+    </nav>
+
+  </header>
+
+<div class="container">
+  @!section('content')
+
+</div>
+
+</body>
+</html>
