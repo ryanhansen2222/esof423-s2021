@@ -1,6 +1,0 @@
-Database for comments - contains parameters:
-time
-commentid
-commenter
-video
-reply (ref to another comment)

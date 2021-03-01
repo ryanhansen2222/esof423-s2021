@@ -1,5 +1,3 @@
-# Ryan Hansen and Alec VanderKolk
-# ESOF 423 Special Project
 # Adonis fullstack application
 
 This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
