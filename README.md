@@ -16,7 +16,4 @@ for the comment section for videos. Software heavily utilizes Adonis.
 
 ### 2. Navigate to /src
 
-#
-Comments
-Likes
-Reactions
+# Developer Document
