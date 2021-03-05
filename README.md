@@ -15,3 +15,8 @@ for the comment section for videos. Software heavily utilizes Adonis.
 ### 1. Clone repo
 
 ### 2. Navigate to /src
+
+#
+Comments
+Likes
+Reactions
