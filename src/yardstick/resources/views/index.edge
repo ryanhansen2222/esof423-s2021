@@ -9,11 +9,14 @@ SpecialProject.io Comment Api
     All the stuff
 </h1>
 
+@each(comment in comments)
+<div class="job-container">
 <div class="blank"></div>
     <div class="info">
-        <h3>Some Title</h3>
+        <h3>{{comment.text}}</h3>
         <p>DESCRIPtION HERE</p>
     </div>
 </div>
+@endeach
 
 @endsection

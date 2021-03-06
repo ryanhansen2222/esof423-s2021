@@ -15,5 +15,10 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
+const Database = use('Database')
 
-Route.on('/').render('index')
+Route.get('/', 'CommentController.home');
+
+Route.get('/posts', async () => {
+  return await Database.table('comments').select('*')
+})
