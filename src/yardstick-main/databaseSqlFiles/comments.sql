@@ -32,7 +32,9 @@ CREATE TABLE `comments` (
   `comment_id` int(11) NOT NULL,
   `page_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `Text` text COLLATE utf8mb4_general_ci NOT NULL
+  `Text` text COLLATE utf8mb4_general_ci NOT NULL, 
+  FOREIGN KEY (`page_id`) REFERENCES `pages` (`page_id`) 
+		ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

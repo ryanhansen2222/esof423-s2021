@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 08, 2021 at 09:17 PM
+-- Generation Time: Mar 08, 2021 at 05:07 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.11
 
@@ -31,8 +31,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `videos` (
   `video_id` int(11) NOT NULL,
   `page_id` int(11) NOT NULL,
-  `user_id` varchar(36) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '00000000-0000-0000-0000-000000000000',
-  `description` text COLLATE utf8mb4_general_ci NOT NULL
+  `user_id` int(11) NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  FOREIGN KEY (`page_id`) REFERENCES `pages` (`page_id`) 
+		ON DELETE NO ACTION ON UPDATE NO ACTION,
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) 
+		ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
