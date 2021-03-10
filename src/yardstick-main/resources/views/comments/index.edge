@@ -1,10 +1,14 @@
 @layout('/main')
 
 @section('content')
-<h1> {{ title }} </h1>
-<ul>
-@each(comment in comments)
-    <li> {{comment.title }}
-@endeach
-</ul>
+<h1> Comments Beta Release </h1>
+<form>
+  <label for="user">User:</label><br>
+  <input type="text" id="user" name="user"><br>
+  <label for="comment">Comment:</label><br>
+  <input type="text" id="comment" name="comment">
+</form>
+
+<button> Submit </button>
+
 @endsection
