@@ -1,14 +1,19 @@
 @layout('/main')
+@section('header')
+{{ style('login') }}
+@endsection
 
 @section('content')
-<h1> Comments Beta Release </h1>
-<form>
-  <label for="user">User:</label><br>
-  <input type="text" id="user" name="user"><br>
-  <label for="comment">Comment:</label><br>
-  <input type="text" id="comment" name="comment">
-</form>
-
-<button> Submit </button>
-
+<div class="wrap">
+  <div class="avatar">
+    <img src="pyramid.png">
+  </div>
+  <input type="text" placeholder="Username" required>
+  <div class="bar">
+    <i></i>
+  </div>
+  <input type="password" placeholder="Password" required>
+  <button>Sign in</button>
+  <button>Forgot</button>
+</div>
 @endsection

@@ -19,6 +19,7 @@ const Route = use('Route')
 Route.on('/').render('welcome')
 Route.on('/home').render('home')
 
-Route.get('/comments', 'CommentController.index')
 Route.on('/team').render('team')
 Route.on('/releases').render('releases')
+Route.on('/comments').render('/comments/index')
+Route.on('/comments/display').render('/comments/display')
