@@ -51,6 +51,75 @@ class CommentController {
 
     return view.render('index', dict);
   }
+
+
+  async userIndex({view, auth}) {
+    const comments = await auth.user.comments().fetch();
+
+        var rawjson = comments.toJSON();
+        var packagedjson = rawjson;
+
+
+        for(let comm in rawjson){
+            //var id = comm.id;
+            var username = await Database.table('users').where('id', rawjson[comm].user_id).pluck('username');
+            //var username = 'noobnoob';
+            packagedjson[comm].username = username;
+
+        }
+
+
+        const dict = {comments: packagedjson};
+
+    return view.render('comments', dict);
+
+  }
+
+  async create({ request, response, session, auth }) {
+    const comment = request.all();
+
+    const posted = await auth.user.comments().create({
+      text: comment.text,
+      user_id: comment.user_id,
+      video_id: comment.video_id,
+
+    })
+
+    session.flash({ message: 'Your Comment has been posted' });
+    return response.redirect('back');
+
+
+  }
+
+
+  async delete({ response, session, params}) {
+    const comment = await Comment.find(params.id);
+
+    await comment.delete();
+    session.flash({ message: 'Comment deleted'});
+    return response.redirect('back');
+
+  }
+
+  async edit({params, view}) {
+    const comment = await Comment.find(params.id);
+    return view.render('edit', {comment: comment});
+  }
+
+    async update ({ response, request, session, params }) {
+        const comment = await Comment.find(params.id);
+
+        comment.text = request.all().text;
+        comment.user_id = request.all().user_id;
+        comment.video_id = request.all().video_id;
+
+        await comment.save();
+
+        session.flash({ message: 'Your comment has been updated. '});
+        return response.redirect('/post-a-comment');
+    }
+
+
 }
 
 module.exports = CommentController

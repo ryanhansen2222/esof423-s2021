@@ -34,5 +34,11 @@ Route.get('/logout', async({ auth, response }) => {
     return response.redirect('/');
 })
 
+Route.get('/post-a-comment', 'CommentController.userIndex');
+Route.get('/post-a-comment/delete/:id', 'CommentController.delete');
+Route.get('/post-a-comment/edit/:id', 'CommentController.edit');
+Route.post('/post-a-comment/update/:id', 'CommentController.update').validator('CreateComment');
+Route.post('/post-a-comment', 'CommentController.create').validator('CreateComment');
+
 
 
