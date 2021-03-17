@@ -13,8 +13,9 @@ SpecialProject.io Comment Api
 <div class="job-container">
 <div class="blank"></div>
     <div class="info">
-        <h3>{{comment.text}}</h3>
-        <p>DESCRIPtION HERE</p>
+      <h4>{{comment.username}} ({{comment.user_id}}) Says: </h4>
+      <p>{{comment.text}}</p>
+        <h6>About video {{comment.video_id}}</h6>
     </div>
 </div>
 @endeach
