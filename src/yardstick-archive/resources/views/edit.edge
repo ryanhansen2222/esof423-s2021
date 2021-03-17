@@ -1,0 +1,34 @@
+@layout('layouts.main')
+
+  @section('title')
+  Special - Edit Comment
+  @endsection
+
+  @section('extracss')
+  {{ style('forms') }}
+  @endsection
+
+  @section('content')
+<h1>Edit Comment</h1>
+
+
+<div class="job-container">
+@if(flashMessage('message'))
+<span>{{ flashMessage('message') }}</span>
+@endif
+<form action="{{ route('CommentController.update', { id: comment.id }) }}" method="POST">
+  {{ csrfField() }}
+
+  <label for="text">Text</label>
+  <input type="text" name="text" value="{{ comment.text }}">
+  @if(hasErrorFor('text'))
+  <span>
+                  {{ getErrorFor('text') }}
+              </span>
+  @endif
+
+
+  <button type="submit">Update Job</button><br>
+</form>
+</div>
+  @endsection

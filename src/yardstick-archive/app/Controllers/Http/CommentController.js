@@ -37,7 +37,7 @@ class CommentController {
 
 
     for(let comm in rawjson){
-        var username = await Database.table('users').where('id', rawjson[comm].id).pluck('username');
+        var username = await Database.table('users').where('id', rawjson[comm].user_id).pluck('username');
 
         packagedjson[comm].username = username;
 
@@ -107,11 +107,10 @@ class CommentController {
   }
 
     async update ({ response, request, session, params }) {
-        const comment = await Comment.find(params.id);
+    const comment = await Comment.find(params.id);
 
         comment.text = request.all().text;
-        comment.user_id = request.all().user_id;
-        comment.video_id = request.all().video_id;
+
 
         await comment.save();
 
