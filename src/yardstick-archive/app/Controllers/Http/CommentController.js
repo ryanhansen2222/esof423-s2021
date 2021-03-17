@@ -7,7 +7,7 @@ const User = use('App/Models/User')
 class CommentController {
   async home({view}) {
 
-
+/*
     //create user
     const test = ((await Database.from('users').getMax('id'))+1).toString();
     const user = new User;
@@ -24,10 +24,12 @@ class CommentController {
     comment.user_id = test;
 
     await comment.save();
+*/
+
 
     // Fetch all comments
     const comments = await Comment.all();
-
+     //const comments = await Database.from('comments').paginate(1,10);
     //Find Username + Video Name
     //name = await Database
     var rawjson = comments.toJSON();

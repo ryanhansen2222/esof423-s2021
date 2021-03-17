@@ -5,7 +5,7 @@
 | Routes
 |--------------------------------------------------------------------------
 |
-| Http routes are entry points to your web application. You can create
+| Http routes are entry points to your web  . You can create
 | routes for different URL's and bind Controller actions to them.
 |
 | A complete guide on routing is available here.
@@ -19,6 +19,20 @@ const Database = use('Database')
 
 Route.get('/', 'CommentController.home');
 
+Route.on('/signup').render('auth.signup');
+Route.post('/signup', 'UserController.create').validator('CreateUser');
+
+Route.on('/login').render('auth.login');
+Route.post('/login', 'UserController.login').validator('LoginUser');
+
 Route.get('/posts', async () => {
   return await Database.table('comments').select('*')
 })
+
+Route.get('/logout', async({ auth, response }) => {
+    await auth.logout();
+    return response.redirect('/');
+})
+
+
+

@@ -16,9 +16,15 @@
     <a href="/" id="logo">LOGO</a>
     <nav>
       <ul>
-        <li><a href="/tab1">Tab1</a></li>
-        <li><a href="/tab2">Tab2</a></li>
-        <li><a href="/tab3">Tab3</a></li>
+        <li><a href="/">Home</a></li>
+        @loggedIn
+        <li><a href="/comment">Comment</a></li>
+        <li><a href="/logout">Logout</a></li>
+
+        @else
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+        @endloggedIn
       </ul>
 
 
