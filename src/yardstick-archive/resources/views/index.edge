@@ -1,0 +1,23 @@
+@layout('layouts.main')
+
+@section('title')
+SpecialProject.io Comment Api
+@endsection
+
+@section('content')
+<h1>
+    All the stuff
+</h1>
+
+@each(comment in comments)
+<div class="job-container">
+<div class="blank"></div>
+    <div class="info">
+      <h4>{{comment.username}} ({{comment.user_id}}) Says: </h4>
+      <p>{{comment.text}}</p>
+        <h6>About video {{comment.video_id}}</h6>
+    </div>
+</div>
+@endeach
+
+@endsection
