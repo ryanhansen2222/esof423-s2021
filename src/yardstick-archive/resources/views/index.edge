@@ -9,7 +9,7 @@ SpecialProject.io Comment Api
     All the stuff
 </h1>
 
-@each(comment in comments)
+@each(comment in comments.data)
 <div class="job-container">
 <div class="blank"></div>
     <div class="info">
@@ -18,6 +18,16 @@ SpecialProject.io Comment Api
         <h6>About video {{comment.video_id}}</h6>
     </div>
 </div>
+
 @endeach
+  @if(comments.data.length)
+<hr>
+
+@!component('layouts.pagination', pagination = comments, request = request, presenter = 'PaginationPresenter')
+@endif
+
+
+
+
 
 @endsection

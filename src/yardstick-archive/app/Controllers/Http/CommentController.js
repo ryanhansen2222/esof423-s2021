@@ -5,7 +5,7 @@ const Database = use('Database')
 const User = use('App/Models/User')
 
 class CommentController {
-  async home({view}) {
+  async home({request, view}) {
 
 /*
     //create user
@@ -28,10 +28,20 @@ class CommentController {
 
 
     // Fetch all comments
-    const comments = await Comment.all();
+    //const comments = await Comment.all();
+
+    //const page = await Database.from('comments').paginate(1,10);
+    const page = request.input('page',1);
+    const limit = 5;
+    const comments = await Comment.query().paginate(page);
+    return view.render('index', { comments: comments.toJSON() });
+
+    /*
      //const comments = await Database.from('comments').paginate(1,10);
     //Find Username + Video Name
     //name = await Database
+
+
     var rawjson = comments.toJSON();
     var packagedjson = rawjson;
 
@@ -50,6 +60,10 @@ class CommentController {
 
 
     return view.render('index', dict);
+    */
+
+
+
   }
 
 
