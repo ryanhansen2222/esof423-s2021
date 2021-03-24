@@ -17,7 +17,7 @@
 const Route = use('Route')
 const Database = use('Database')
 
-Route.get('/', 'CommentController.home');
+Route.get('/', 'VideoController.home');
 
 Route.on('/signup').render('auth.signup');
 Route.post('/signup', 'UserController.create').validator('CreateUser');
@@ -42,4 +42,11 @@ Route.post('/post-a-comment/update/:id', 'CommentController.update').validator('
 Route.post('/post-a-comment', 'CommentController.create').validator('CreateComment');
 
 
+Route.get('/post-a-video', 'VideoController.userIndex');
+Route.get('/post-a-video/delete/:id', 'VideoController.delete');
+Route.get('/post-a-video/edit/:id', 'VideoController.edit');
+Route.post('/post-a-video/update/:id', 'VideoController.update');
+Route.post('/post-a-video', 'VideoController.create');
+
+Route.get('/watchvideo', 'VideoController.watch');
 

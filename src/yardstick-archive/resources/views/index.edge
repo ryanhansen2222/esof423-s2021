@@ -8,14 +8,15 @@ SpecialProject.io Comment Api
 <h1>
     All the stuff
 </h1>
-<h2>Comments per page {{ comments.perPage }} </h2>
-@each(comment in comments.data)
+<h2>Top Videos </h2>
+@each(video in videos.data)
 <div class="job-container">
 <div class="blank"></div>
     <div class="info">
-      <h4>{{comment.username}} ({{comment.user_id}}) Says: </h4>
-      <p>{{comment.text}}</p>
-        <h6>About video {{comment.video_id}}</h6>
+      <a href="{{video.url}}"><h4>{{video.title}} </h4></a>
+      <p>{{video.description}}</p>
+
+        <h6>-- {{video.username}} --</h6>
     </div>
 </div>
 

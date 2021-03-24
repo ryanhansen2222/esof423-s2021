@@ -32,7 +32,7 @@ class CommentController {
 
     //const page = await Database.from('comments').paginate(1,10);
     const page = request.input('page',1);
-    const limit = 5;
+    const limit = 10;
     const comments = await Comment.query().paginate(page, limit);
     return view.render('index', { comments: comments.toJSON() });
 
