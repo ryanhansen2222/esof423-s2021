@@ -100,6 +100,36 @@ class VideoController {
         return response.redirect('/post-a-video');
     }
 
+    async watch({request, view}) {
+
+          const page = request.input('page',1);
+          const limit = 10;
+          const comments = await Comment.query().where('video_id','1').paginate(page, limit);
+
+
+          //Add .username to comments.data
+
+    var rawjson = comments.toJSON();
+    var packagedjson = rawjson;
+
+
+    for(let comm in rawjson.data){
+        var username = await Database.table('users').where('id', rawjson.data[comm].user_id).pluck('username');
+        packagedjson.data[comm].username = username;
+
+    }
+
+
+    const dict = {comments: packagedjson};
+
+
+
+
+    return view.render('watchvideo', dict);
+
+
+    }
+
 }
 
 module.exports = VideoController

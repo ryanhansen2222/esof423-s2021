@@ -21,10 +21,10 @@ SpecialProject.io Comment Api
 </div>
 
 @endeach
-  @if(comments.data.length)
+  @if(videos.data.length)
 <hr>
 
-@!component('layouts.pagination', pagination = comments, request = request, presenter = 'PaginationPresenter')
+@!component('layouts.pagination', pagination = videos, request = request, presenter = 'PaginationPresenter')
 @endif
 
 
