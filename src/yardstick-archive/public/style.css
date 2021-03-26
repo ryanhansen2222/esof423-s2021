@@ -29,6 +29,22 @@ header a {
   text-decoration: none;
   text-transform: uppercase;
 }
+.info a {
+  color: #000000;
+  font-weight: bold;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  border-bottom: 4px;
+  text-decoration: none;
+}
+.info h6 {
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 17px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  border-bottom: 0px;
+}
 #logo {
   font-weight: bold;
   font-size: 1.3em;
@@ -68,5 +84,8 @@ h1 {
   width: 100px;
   height: 100px;
   border: 1px solid lightgray;
-  border-radius: 5px;
+  /* border-radius: 5px; */
+}
+.info {
+  display:grid;
 }
