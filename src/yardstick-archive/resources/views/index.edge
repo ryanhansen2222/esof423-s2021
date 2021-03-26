@@ -13,7 +13,7 @@ SpecialProject.io Comment Api
 <div class="job-container">
 <div class="blank"></div>
     <div class="info">
-      <a href="{{video.url}}"><h4>{{video.title}} </h4></a>
+      <a href="{{ route('VideoController.watch', { id: video.id }) }}"><h4>{{ video.title }}</h4></a>
       <p>{{video.description}}</p>
 
         <h6>-- {{video.username}} --</h6>

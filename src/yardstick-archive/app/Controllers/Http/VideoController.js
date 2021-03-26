@@ -100,11 +100,12 @@ class VideoController {
         return response.redirect('/post-a-video');
     }
 
-    async watch({request, view}) {
+    async watch({request, view, params}) {
+
 
           const page = request.input('page',1);
           const limit = 10;
-          const comments = await Comment.query().where('video_id','1').paginate(page, limit);
+          const comments = await Comment.query().where('video_id',params.id).paginate(page, limit);
 
 
           //Add .username to comments.data
@@ -125,7 +126,8 @@ class VideoController {
 
 
 
-    return view.render('watchvideo', dict);
+    //return view.render('watchvideo', dict);
+    return view.render('watchvideo');
 
 
     }

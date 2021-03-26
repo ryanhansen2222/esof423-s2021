@@ -48,5 +48,5 @@ Route.get('/post-a-video/edit/:id', 'VideoController.edit');
 Route.post('/post-a-video/update/:id', 'VideoController.update');
 Route.post('/post-a-video', 'VideoController.create');
 
-Route.get('/watchvideo', 'VideoController.watch');
+Route.get('/watchvideo/:id', 'VideoController.watch');
 
