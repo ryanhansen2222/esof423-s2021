@@ -1,0 +1,15 @@
+<ul>
+  <li>
+    <a {{ isFirst(pagination) ? '' : 'href=?' + append(request.originalUrl(), 'page', pagination.page - 1) }}>Previous</a>
+</li>
+  @each(page in range(1, pagination.lastPage+1))
+<li>
+<a {{ !isCurrent(pagination, page) ? 'href=?' + append(request.originalUrl(), 'page', page) : '' }}>
+{{ page }}
+</a>
+  </li>
+  @endeach
+<li>
+<a {{ isLast(pagination) ? '' : 'href=?' + append(request.originalUrl(), 'page', pagination.page + 1) }}>Next</a>
+  </li>
+  </ul>
