@@ -103,34 +103,48 @@ class VideoController {
     async watch({request, view, params}) {
 
 
-          const page = request.input('page',1);
-          const limit = 10;
-          const comments = await Comment.query().where('video_id',params.id).paginate(page, limit);
+             const page = request.input('page',1);
+             const video_id = params.id;
+              const limit = 10;
+              const comments = await Comment.query().where('video_id',video_id).paginate(page, limit);
+
+              //const video = await Database.table('videos').where('id',video_id);
+              const video = await Video.findOrFail(video_id);
+              const videodata = video.toJSON();
+
+              //Add .username to comments.data
+
+        var rawjson = comments.toJSON();
+        var packagedjson = rawjson;
 
 
-          //Add .username to comments.data
+        for(let comm in rawjson.data){
+            var username = await Database.table('users').where('id', rawjson.data[comm].user_id).pluck('username');
+            packagedjson.data[comm].username = username;
 
-    var rawjson = comments.toJSON();
-    var packagedjson = rawjson;
+        }
 
 
-    for(let comm in rawjson.data){
-        var username = await Database.table('users').where('id', rawjson.data[comm].user_id).pluck('username');
-        packagedjson.data[comm].username = username;
+        const commentdict = {comments: packagedjson};
+        //const data = yield response.view('watchvideo', dict);
+
+        videodata.author = await Database.table('users').where('id', videodata.user_id).pluck('username');
+        var videodict = {video: videodata};
+
+        await view.render('watchvideo', commentdict);
+        await view.render('watchvideo', videodict);
+        //return videodict;
+
+
+    //var pagename = 'watchvideo/' + params.id;
+    return view.render('watchvideo', video_id);
+    //return view.render('watchvideo', params.id);
+    //return view.render(pagename);
+
 
     }
 
 
-    const dict = {comments: packagedjson};
-
-
-
-
-    //return view.render('watchvideo', dict);
-    return view.render('watchvideo');
-
-
-    }
 
 }
 

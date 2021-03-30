@@ -89,13 +89,13 @@ class CommentController {
 
   }
 
-  async create({ request, response, session, auth }) {
+  async create({ request, response, session, auth, params }) {
     const comment = request.all();
 
     const posted = await auth.user.comments().create({
       text: comment.text,
       user_id: comment.user_id,
-      video_id: comment.video_id,
+      video_id: params.id,
 
     })
 

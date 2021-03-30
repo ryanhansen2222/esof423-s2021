@@ -9,17 +9,26 @@
   @endsection
 
   @section('content')
-<h1>Post a comment</h1>
+
+<h1> {{ video.title }}</h1>
+<div class="job-container">
+<p>Video plays here</p>
+</div>
+<p>-- {{ video.author }} --</p>
+
+
+
 
 
 <div class="job-container">
 @if(flashMessage('message'))
 <span>{{ flashMessage('message') }}</span>
 @endif
-<form action="{{ route('CommentController.create') }}" method="POST">
+
+<form action="{{ route('CommentController.create', { id: 3 }) }}" method="POST">
   {{ csrfField() }}
 
-  <label for="text">Comment Text</label>
+  <label for="text"></label>
   <input type="text" name="text" value="{{ old('text', '') }}">
   @if(hasErrorFor('text'))
   <span>
@@ -31,13 +40,19 @@
   <button type="submit">Comment</button>
 </form>
 </div>
+<div>
 
-<h2>My comments</h2>
 
-  @each(comment in comments)
+</div>
+
+<h2>All comments</h2>
+
+
+  @each(comment in comments.data)
 <div class="job-container2">
 <div class="blank"></div>
 <div class="job-info">
+
   <h3>{{ comment.username }} ({{comment.user_id}}) Says: </h3>
   <p>{{ comment.text }}</p>
   <ul>

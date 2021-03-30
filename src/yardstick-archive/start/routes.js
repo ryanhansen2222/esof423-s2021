@@ -39,8 +39,7 @@ Route.get('/post-a-comment', 'CommentController.userIndex');
 Route.get('/post-a-comment/delete/:id', 'CommentController.delete');
 Route.get('/post-a-comment/edit/:id', 'CommentController.edit');
 Route.post('/post-a-comment/update/:id', 'CommentController.update').validator('CreateComment');
-Route.post('/post-a-comment', 'CommentController.create').validator('CreateComment');
-
+Route.post('/post-a-comment/:id', 'CommentController.create').validator('CreateComment');
 
 Route.get('/post-a-video', 'VideoController.userIndex');
 Route.get('/post-a-video/delete/:id', 'VideoController.delete');
@@ -49,4 +48,6 @@ Route.post('/post-a-video/update/:id', 'VideoController.update');
 Route.post('/post-a-video', 'VideoController.create');
 
 Route.get('/watchvideo/:id', 'VideoController.watch');
+Route.post('/watchvideo/:id/', 'CommentController.create').validator('CreateComment');
+
 
