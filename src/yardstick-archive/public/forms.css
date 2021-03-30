@@ -1,7 +1,7 @@
 .job-container {
     grid-template-columns: auto;
     padding: 2em;
-    width: 30%;
+    width: 60%;
 
   }
 label {
