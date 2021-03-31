@@ -50,6 +50,8 @@ header a {
   font-size: 1.3em;
   padding: 1.5em 0 0 2em;
   margin: 0;
+  width: 50px;
+  height: 50px;
 }
 nav {
   justify-self: right;

@@ -17,7 +17,12 @@
 const Route = use('Route')
 const Database = use('Database')
 
-Route.get('/', 'CommentController.home');
+
+Route.on('/home').render('home')
+Route.on('/devdoc').render('devdoc')
+Route.on('/devdoc/gettingstarted').render('getstarted')
+
+Route.get('/comment', 'CommentController.home');
 
 Route.on('/signup').render('auth.signup');
 Route.post('/signup', 'UserController.create').validator('CreateUser');

@@ -67,14 +67,13 @@ class CommentController {
             packagedjson[comm].username = username;
 
         }
-
-
         const dict = {comments: packagedjson};
 
     return view.render('comments', dict);
 
   }
 
+  // create comment call
   async create({ request, response, session, auth }) {
     const comment = request.all();
 
@@ -91,7 +90,7 @@ class CommentController {
 
   }
 
-
+// delete comment call
   async delete({ response, session, params}) {
     const comment = await Comment.find(params.id);
 
