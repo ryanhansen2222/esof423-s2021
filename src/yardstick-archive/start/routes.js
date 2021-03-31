@@ -19,6 +19,13 @@ const Database = use('Database')
 
 Route.get('/', 'VideoController.home');
 
+
+Route.on('/home').render('home')
+Route.on('/devdoc').render('devdoc')
+Route.on('/devdoc/gettingstarted').render('getstarted')
+
+Route.get('/comments', 'CommentController.home');
+
 Route.on('/signup').render('auth.signup');
 Route.post('/signup', 'UserController.create').validator('CreateUser');
 
@@ -31,7 +38,7 @@ Route.get('/posts', async () => {
 
 Route.get('/logout', async({ auth, response }) => {
     await auth.logout();
-    return response.redirect('/');
+    return response.redirect('/home');
 })
 
 
