@@ -36,7 +36,7 @@ Route.get('/posts', async () => {
 
 Route.get('/logout', async({ auth, response }) => {
     await auth.logout();
-    return response.redirect('/');
+    return response.redirect('/home');
 })
 
 Route.get('/post-a-comment', 'CommentController.userIndex');
