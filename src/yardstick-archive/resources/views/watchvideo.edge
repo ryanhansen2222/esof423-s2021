@@ -53,13 +53,19 @@
 <div class="blank"></div>
 <div class="job-info">
 
-  <h3>{{ comment.username }} ({{comment.user_id}}) Says: </h3>
+  <h3>{{ comment.username }}: </h3>
   <p>{{ comment.text }}</p>
-  <ul>
-    <li><a href="{{ route('CommentController.delete', { id: comment.id }) }}">Delete</a></li>
-    <li><a href="{{ route('CommentController.edit', { id: comment.id }) }}">Edit</a></li>
-  </ul>
+@!component('layouts.commentdisplay', comment = comment, auth = auth, presenter = 'UserDataPresenter')
+
+
 </div>
 </div>
   @endeach
+
+  @if(comments.data.length)
+<hr>
+
+@!component('layouts.pagination', pagination = comments, request = request, presenter = 'PaginationPresenter')
+@endif
+
   @endsection

@@ -49,5 +49,8 @@ Route.post('/post-a-video', 'VideoController.create');
 
 Route.get('/watchvideo/:id', 'VideoController.watch');
 Route.post('/watchvideo/:id/', 'CommentController.create').validator('CreateComment');
+Route.get('/watchvideo/edit/:id', 'CommentController.edit');
+Route.post('/watchvideo/update/:id', 'CommentController.update').validator('CreateComment');
+
 
 

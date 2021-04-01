@@ -129,7 +129,7 @@ class CommentController {
         await comment.save();
 
         session.flash({ message: 'Your comment has been updated. '});
-        return response.redirect('/post-a-comment');
+        return response.redirect('watchvideo/' + params.video_id);
     }
 
 
