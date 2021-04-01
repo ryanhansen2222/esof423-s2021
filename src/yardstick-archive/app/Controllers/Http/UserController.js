@@ -8,7 +8,7 @@ class UserController {
 
         await auth.login(user);
 
-        return response.redirect('/');
+        return response.redirect('/home');
 
 
     }
@@ -18,7 +18,7 @@ class UserController {
 
         try {
             await auth.attempt(email, password);
-            return response.redirect('/');
+            return response.redirect('/home');
         } catch (error) {
             session.flash({loginError: 'These credentials do not work.'})
             return response.redirect('/login');
