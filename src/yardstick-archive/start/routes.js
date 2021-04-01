@@ -17,7 +17,7 @@
 const Route = use('Route')
 const Database = use('Database')
 
-Route.get('/', 'VideoController.home');
+Route.get('/videos', 'VideoController.home');
 
 
 Route.on('/home').render('home')
@@ -45,7 +45,7 @@ Route.get('/logout', async({ auth, response }) => {
 Route.get('/post-a-comment', 'CommentController.userIndex');
 Route.get('/post-a-comment/delete/:id', 'CommentController.delete');
 Route.get('/post-a-comment/edit/:id', 'CommentController.edit');
-Route.post('/post-a-comment/update/:id', 'CommentController.update').validator('CreateComment');
+Route.post('/post-a-comment/update/:id/', 'CommentController.update').validator('CreateComment');
 Route.post('/post-a-comment/:id', 'CommentController.create').validator('CreateComment');
 
 Route.get('/post-a-video', 'VideoController.userIndex');
@@ -58,6 +58,6 @@ Route.get('/watchvideo/:id', 'VideoController.watch');
 Route.post('/watchvideo/:id/', 'CommentController.create').validator('CreateComment');
 Route.get('/watchvideo/edit/:id', 'CommentController.edit');
 Route.post('/watchvideo/update/:id', 'CommentController.update').validator('CreateComment');
-
+Route.get('/watchvideo/like/:id', 'CommentController.like');
 
 

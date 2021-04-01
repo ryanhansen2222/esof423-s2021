@@ -3,6 +3,7 @@
 const Comment = use('App/Models/Comment')
 const Database = use('Database')
 const User = use('App/Models/User')
+const Video = use('App/Models/Video')
 
 class CommentController {
   async home({request, view}) {
@@ -95,6 +96,7 @@ class CommentController {
       text: comment.text,
       user_id: comment.user_id,
       video_id: params.id,
+      likes: 0,
 
     })
 
@@ -116,7 +118,10 @@ class CommentController {
 
   async edit({params, view}) {
     const comment = await Comment.find(params.id);
-    return view.render('edit', {comment: comment});
+    //const video = await Video.find(params.video_id);
+    var dict = {comment: comment, video: params.video_id};
+
+    return view.render('edit', dict);
   }
 
     async update ({ response, request, session, params }) {
@@ -128,8 +133,21 @@ class CommentController {
         await comment.save();
 
         session.flash({ message: 'Your comment has been updated. '});
-        return response.redirect('watchvideo/' + params.video_id);
+        //return response.route('VideoController.watch', { id: params.video_id });
+        return response.redirect('/home');
     }
+
+        async like ({ response, request, session, params }) {
+        const comment = await Comment.find(params.id);
+
+            comment.likes = comment.likes + 1;
+
+
+            await comment.save();
+
+            //return response.route('VideoController.watch', { id: params.video_id });
+            return response.redirect('back');
+        }
 
 
 }
