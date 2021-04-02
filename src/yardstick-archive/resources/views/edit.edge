@@ -11,12 +11,11 @@
   @section('content')
 <h1>Edit Comment</h1>
 
-
 <div class="job-container">
 @if(flashMessage('message'))
 <span>{{ flashMessage('message') }}</span>
 @endif
-<form action="{{ route('CommentController.update', { id: comment.id }) }}" method="POST">
+<form action="{{ route('CommentController.update', { id: comment.id, video_id: video.id }) }}" method="POST">
   {{ csrfField() }}
 
   <label for="text">Text</label>
@@ -28,7 +27,7 @@
   @endif
 
 
-  <button type="submit">Update Job</button><br>
+  <button type="submit">Submit</button><br>
 </form>
 </div>
   @endsection

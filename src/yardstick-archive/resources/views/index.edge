@@ -8,16 +8,29 @@ SpecialProject.io Comment Api
 <h1>
     Display Comments
 </h1>
-
-@each(comment in comments)
+<h2>Top Videos </h2>
+@each(video in videos.data)
 <div class="job-container">
 <div class="blank"></div>
     <div class="info">
-      <a href="" title="user_id:{{comment.user_id}}">{{comment.username}}</a>
-      <p>{{comment.text}}</p>
-        <h6>About video {{comment.video_id}}</h6>
+
+      <a href="{{ route('VideoController.watch', { id: video.id }) }}"><h4>{{ video.title }}</h4></a>
+      <p>{{video.description}}</p>
+
+        <h6>-- {{video.username}} --</h6>
+
     </div>
 </div>
+
 @endeach
+  @if(videos.data.length)
+<hr>
+
+@!component('layouts.pagination', pagination = videos, request = request, presenter = 'PaginationPresenter')
+@endif
+
+
+
+
 
 @endsection

@@ -1,0 +1,71 @@
+@layout('layouts.main')
+
+  @section('title')
+  Watch Now
+  @endsection
+
+  @section('extracss')
+  {{ style('forms') }}
+  @endsection
+
+  @section('content')
+
+<h1> {{ video.title }}</h1>
+<div class="job-container">
+<p>Video plays here</p>
+</div>
+<p>-- {{ video.author }} --</p>
+
+
+
+
+
+<div class="job-container">
+@if(flashMessage('message'))
+<span>{{ flashMessage('message') }}</span>
+@endif
+
+<form action="{{ route('CommentController.create', { id: 1 }) }}" method="POST">
+  {{ csrfField() }}
+
+  <label for="text"></label>
+  <input type="text" name="text" value="{{ old('text', '') }}">
+  @if(hasErrorFor('text'))
+  <span>
+                  {{ getErrorFor('text') }}
+              </span>
+  @endif
+
+
+  <button type="submit">Comment</button>
+</form>
+</div>
+<div>
+
+
+</div>
+
+<h2>All comments</h2>
+
+
+  @each(comment in comments.data)
+<div class="job-container2">
+<div class="blank"></div>
+<div class="job-info">
+
+  <h3>{{ comment.username }}: </h3>
+  <p>{{ comment.text }}</p>
+@!component('layouts.commentdisplay', comment = comment, auth = auth, video=video, presenter = 'UserDataPresenter')
+
+
+</div>
+</div>
+  @endeach
+
+  @if(comments.data.length)
+<hr>
+
+@!component('layouts.pagination', pagination = comments, request = request, presenter = 'PaginationPresenter')
+@endif
+
+  @endsection

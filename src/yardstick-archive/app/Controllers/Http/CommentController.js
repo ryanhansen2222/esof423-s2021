@@ -3,9 +3,10 @@
 const Comment = use('App/Models/Comment')
 const Database = use('Database')
 const User = use('App/Models/User')
+const Video = use('App/Models/Video')
 
 class CommentController {
-  async home({view}) {
+  async home({request, view}) {
 
 /*
     //create user
@@ -28,10 +29,20 @@ class CommentController {
 
 
     // Fetch all comments
-    const comments = await Comment.all();
+    //const comments = await Comment.all();
+
+    //const page = await Database.from('comments').paginate(1,10);
+    const page = request.input('page',1);
+    const limit = 10;
+    const comments = await Comment.query().paginate(page, limit);
+    return view.render('index', { comments: comments.toJSON() });
+
+    /*
      //const comments = await Database.from('comments').paginate(1,10);
     //Find Username + Video Name
     //name = await Database
+
+
     var rawjson = comments.toJSON();
     var packagedjson = rawjson;
 
@@ -50,6 +61,10 @@ class CommentController {
 
 
     return view.render('index', dict);
+    */
+
+
+
   }
 
 
@@ -73,14 +88,15 @@ class CommentController {
 
   }
 
-  // create comment call
-  async create({ request, response, session, auth }) {
+  async create({ request, response, session, auth, params }) {
+
     const comment = request.all();
 
     const posted = await auth.user.comments().create({
       text: comment.text,
       user_id: comment.user_id,
-      video_id: comment.video_id,
+      video_id: params.id,
+      likes: 0,
 
     })
 
@@ -102,7 +118,10 @@ class CommentController {
 
   async edit({params, view}) {
     const comment = await Comment.find(params.id);
-    return view.render('edit', {comment: comment});
+    //const video = await Video.find(params.video_id);
+    var dict = {comment: comment, video: params.video_id};
+
+    return view.render('edit', dict);
   }
 
     async update ({ response, request, session, params }) {
@@ -114,8 +133,21 @@ class CommentController {
         await comment.save();
 
         session.flash({ message: 'Your comment has been updated. '});
-        return response.redirect('/post-a-comment');
+        //return response.route('VideoController.watch', { id: params.video_id });
+        return response.redirect('/home');
     }
+
+        async like ({ response, request, session, params }) {
+        const comment = await Comment.find(params.id);
+
+            comment.likes = comment.likes + 1;
+
+
+            await comment.save();
+
+            //return response.route('VideoController.watch', { id: params.video_id });
+            return response.redirect('back');
+        }
 
 
 }

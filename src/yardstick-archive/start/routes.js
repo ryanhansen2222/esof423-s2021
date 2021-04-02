@@ -17,7 +17,9 @@
 const Route = use('Route')
 const Database = use('Database')
 
+Route.get('/videos', 'VideoController.home');
 
+Route.get('/', 'VideoController.base');
 Route.on('/home').render('home')
 Route.on('/devdoc').render('devdoc')
 Route.on('/devdoc/gettingstarted').render('getstarted')
@@ -39,11 +41,23 @@ Route.get('/logout', async({ auth, response }) => {
     return response.redirect('/home');
 })
 
+
 Route.get('/post-a-comment', 'CommentController.userIndex');
 Route.get('/post-a-comment/delete/:id', 'CommentController.delete');
 Route.get('/post-a-comment/edit/:id', 'CommentController.edit');
-Route.post('/post-a-comment/update/:id', 'CommentController.update').validator('CreateComment');
-Route.post('/post-a-comment', 'CommentController.create').validator('CreateComment');
+Route.post('/post-a-comment/update/:id/', 'CommentController.update').validator('CreateComment');
+Route.post('/post-a-comment/:id', 'CommentController.create').validator('CreateComment');
 
+Route.get('/post-a-video', 'VideoController.userIndex');
+Route.get('/post-a-video/delete/:id', 'VideoController.delete');
+Route.get('/post-a-video/edit/:id', 'VideoController.edit');
+Route.post('/post-a-video/update/:id', 'VideoController.update');
+Route.post('/post-a-video', 'VideoController.create');
+
+Route.get('/watchvideo/:id', 'VideoController.watch');
+Route.post('/watchvideo/:id/', 'CommentController.create').validator('CreateComment');
+Route.get('/watchvideo/edit/:id', 'CommentController.edit');
+Route.post('/watchvideo/update/:id', 'CommentController.update').validator('CreateComment');
+Route.get('/watchvideo/like/:id', 'CommentController.like');
 
 

@@ -25,6 +25,11 @@ comments() {
     return this.hasMany('App/Models/Comment');
 }
 
+videos() {
+    return this.hasMany('App/Models/Video');
+
+}
+
   /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or
