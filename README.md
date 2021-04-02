@@ -5,6 +5,7 @@ Specialproject.io comment API with Adonis\
 
 [Zoom Meeting Link For Group Members](https://us05web.zoom.us/j/9131164556?pwd=SjRjTmZLWWlQd1RQM2V4ZmR6Q0c2Zz09)\
 
+Contributors: Ryan Hansen, Alec VanderKolk, Alan Tong, Sam Forbes
 
 ## Description
 specialproject is a premium video sharing service. This API is responsible
