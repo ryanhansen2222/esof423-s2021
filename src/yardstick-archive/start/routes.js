@@ -19,7 +19,7 @@ const Database = use('Database')
 
 Route.get('/videos', 'VideoController.home');
 
-
+Route.get('/', 'VideoController.base');
 Route.on('/home').render('home')
 Route.on('/devdoc').render('devdoc')
 Route.on('/devdoc/gettingstarted').render('getstarted')

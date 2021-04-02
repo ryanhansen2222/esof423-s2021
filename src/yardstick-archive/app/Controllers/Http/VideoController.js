@@ -7,6 +7,12 @@ const User = use('App/Models/User')
 
 class VideoController {
 
+  async base ({request, view}){
+    return view.render('home')
+
+
+  }
+
   async home({request, view}) {
 
       const page = request.input('page',1);
