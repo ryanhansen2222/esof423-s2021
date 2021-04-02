@@ -1,6 +1,6 @@
 # Specialproject.io comment API
 Specialproject.io comment API with Adonis\
-[Website Through MSU school server connection]http://esof423.cs.montana.edu:4006/home
+[Website Through MSU school server connection](http://esof423.cs.montana.edu:4006/home)\
 
 [Zoom Meeting Link For Group Members](https://us05web.zoom.us/j/9131164556?pwd=SjRjTmZLWWlQd1RQM2V4ZmR6Q0c2Zz09)\
 
