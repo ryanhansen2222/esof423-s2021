@@ -19,6 +19,7 @@ for the comment section for videos. Software heavily utilizes Adonis. Usage requ
 
 ### 3. Open yardstick-archive directory and run: nodemon server.js
 
+## Additional Technical Documentation
 The special project API runs on an adonis framework with a sqlite as the database. It requires a number of dependencies including adonisjs, sqlite3, adonis-swagger, @adonisjs-ignitor, nodemon, Node.js > 8.0.0, and NPM > 3.0.0. The project was built on a Linux platform, but can be adapted to work on other operating systems. To use the API, first clone the repository at https://github.com/ryanhansen2222/esof423-s2021. Within this repository, navigate to /src. The adonis project to use within this folder will be named /yardstick-archive. Assuming all dependencies are installed, running nodemon server.js from the command line while in the directory yardstick-archive should start the project. This will initially be set up to run on the local host, but the .env file can be modified to match the needs of the user. Upon serving the application, the home screen should display the following page:
 
 ![img1](https://user-images.githubusercontent.com/56380447/113443175-acf10000-93ae-11eb-8220-7abcea770b77.png)
