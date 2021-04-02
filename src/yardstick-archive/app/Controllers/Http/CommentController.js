@@ -134,7 +134,7 @@ class CommentController {
 
         session.flash({ message: 'Your comment has been updated. '});
         //return response.route('VideoController.watch', { id: params.video_id });
-        return response.redirect('/home');
+        return response.redirect('back');
     }
 
         async like ({ response, request, session, params }) {
