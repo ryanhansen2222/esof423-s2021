@@ -25,7 +25,8 @@
 <span>{{ flashMessage('message') }}</span>
 @endif
 
-<form action="{{ route('CommentController.create', { id: 1 }) }}" method="POST">
+<p>HERE IS VIDEO ID {{video.id}}</p>
+<form action="{{ route('CommentController.create', { id: video.id }) }}" method="POST">
   {{ csrfField() }}
 
   <label for="text"></label>

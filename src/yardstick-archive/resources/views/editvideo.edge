@@ -15,7 +15,7 @@
 @if(flashMessage('message'))
 <span>{{ flashMessage('message') }}</span>
 @endif
-<form action="{{ route('VideoController.update', { video_id: video.id }) }}" method="POST">
+<form action="{{ route('VideoController.update', { id: video.id }) }}" method="POST">
   {{ csrfField() }}
 
   <label for="title">Title</label>

@@ -91,13 +91,16 @@ class VideoController {
 
   async edit({params, view}) {
     const video = await Video.find(params.id);
-    return view.render('edit', {video: video});
+    await view.render('editvideo', {video: video.toJSON()});
+    //return video;
+    return view.render('editvideo', params.id);
   }
 
     async update ({ response, request, session, params }) {
     const video = await Video.find(params.id);
 
-        video.text = request.all().text;
+        video.title = request.all().title;
+        video.description = request.all().description;
 
 
         await video.save();
@@ -106,7 +109,8 @@ class VideoController {
         return response.redirect('/post-a-video');
     }
 
-    async watch({request, view, params}) {
+    async watch({request, response, view, params}) {
+
 
 
              const page = request.input('page',1);
@@ -115,8 +119,12 @@ class VideoController {
               const comments = await Comment.query().where('video_id',video_id).paginate(page, limit);
 
               //const video = await Database.table('videos').where('id',video_id);
-              const video = await Video.findOrFail(video_id);
+
+              const video = await Video.find(video_id);
               const videodata = video.toJSON();
+
+
+
 
               //Add .username to comments.data
 
@@ -132,14 +140,16 @@ class VideoController {
 
 
         const commentdict = {comments: packagedjson};
-        //const data = yield response.view('watchvideo', dict);
 
         videodata.author = await Database.table('users').where('id', videodata.user_id).pluck('username');
         var videodict = {video: videodata};
 
-        await view.render('watchvideo', commentdict);
+        //return view.render('home');
+
+
         await view.render('watchvideo', videodict);
-        //return videodict;
+        await view.render('watchvideo', commentdict);
+        //return commentdict;
 
 
     //var pagename = 'watchvideo/' + params.id;
