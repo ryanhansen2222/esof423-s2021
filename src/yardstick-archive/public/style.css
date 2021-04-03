@@ -91,3 +91,12 @@ h1 {
 .info {
   display:grid;
 }
+.job-info h3 {
+  padding-bottom:12px;
+}
+.job-info p {
+  padding-bottom:28px;
+}
+.pagination a {
+  padding-right:8px
+}
