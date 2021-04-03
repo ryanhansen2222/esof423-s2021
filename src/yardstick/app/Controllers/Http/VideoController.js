@@ -35,7 +35,7 @@ class VideoController {
 
       const dict = {videos: packagedjson};
 
-      return view.render('index', dict);
+      return view.render('videos', dict);
 
   }
 
