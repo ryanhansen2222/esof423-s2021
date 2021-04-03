@@ -91,13 +91,16 @@ class VideoController {
 
   async edit({params, view}) {
     const video = await Video.find(params.id);
-    return view.render('edit', {video: video});
+    await view.render('editvideo', {video: video.toJSON()});
+    //return video;
+    return view.render('editvideo', params.id);
   }
 
     async update ({ response, request, session, params }) {
     const video = await Video.find(params.id);
 
-        video.text = request.all().text;
+        video.title = request.all().title;
+        video.description = request.all().description;
 
 
         await video.save();
