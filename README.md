@@ -38,4 +38,6 @@ Once a video has been posted to the site, users can comment on the video under t
 
 The yardstick-archive repository can be copied and modified directly to meet the needs of the user. Alternatively database migrations, routes, edge files, controllers, and other required files can be used individually to meet the user’s needs from within their own adonis project.
 
+##Selenium Testing
 
+A Selenium test suite is included within the repository. To run this, the Selenium ide is a required extension from your browser. Then, the url within the .side files will need to be changed to match your working url or local host. A video showing this test suite running successfully can be found [here](https://youtu.be/ZJiIl9BfRrE). 
