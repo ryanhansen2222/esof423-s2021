@@ -28,7 +28,7 @@ specialproject is a premium video sharing service. This API is responsible for t
     npm install
     cp .env.example .env
     ```
-3. Inside the newly created .env file, verify the correct host and port numbers too develop locally on your network.
+3. Inside the newly created .env file, verify the correct host and port numbers to develop locally on your network.
 4. Execute the following in the yardstick directory:
     ```
     nodemon server.js 
