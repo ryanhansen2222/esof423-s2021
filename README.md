@@ -1,26 +1,56 @@
+# Specialproject.io Comment API
+Comment API with AdonisJS Framework\
+[Connect via MSU-Secure Network](http://esof423.cs.montana.edu:4006/home)
 
-# Specialproject.io comment API
-Specialproject.io comment API with Adonis\
-[Website Through MSU school server connection](http://esof423.cs.montana.edu:4006/home)\
-
-[Zoom Meeting Link For Group Members](https://us05web.zoom.us/j/9131164556?pwd=SjRjTmZLWWlQd1RQM2V4ZmR6Q0c2Zz09)\
+[Zoom Meeting](https://us05web.zoom.us/j/9131164556?pwd=SjRjTmZLWWlQd1RQM2V4ZmR6Q0c2Zz09)
 
 Contributors: Ryan Hansen, Alec VanderKolk, Alan Tong, Samuel Forbes
 
 ## Description
-specialproject is a premium video sharing service. This API is responsible
-for the comment section for videos. Software heavily utilizes Adonis. Usage requires adonisjs, sqlite3, adonis-swagger, @adonisjs-ignitor, Node.js > 8.0.0, and NPM > 3.0.0. This project implements the comments in coordination with user created videos. This API requires that the media upload for the "video" is implemented by the user of the API. 
+specialproject is a premium video sharing service. This API is responsible for the comment section for videos. Software heavily utilizes AdonisJS. 
 
-## Instructions
+### Dependencies 
+* Node packet manager >= 3.0
+* Sqlite3
+* AdonisJS 
+    - @adonisjs-ignitor
+    - @adonisjs-validator
+    - @adonisjs-vow
+    - @adonisjs-lucid
 
-### 1. Clone repo
+## Installation
+1. From the terminal, clone the github repository via https by running
+    ```
+    git clone https://github.com/ryanhansen2222/esof423-s2021.git
+    ```
+2. In the esof423-s2021.git repostory, navigate to src/yardstick. Run the following commands:
+    ```
+    npm install
+    cp .env.example .env
+    ```
+3. Inside the newly created .env file, verify the correct host and port numbers too develop locally on your network.
+4. Execute the following in the yardstick directory:
+    ```
+    nodemon server.js 
+    ```
+    If you do not have nodemon installed for node.js development, run:
+    ```
+    adonis serve --dev
+    ```
+5. Navigate to ***http://{HOST}:{PORT}***, with HOST and PORT from your .env file.
+6. If database error occurs when viewing ***videos***, execute the following commands in the src/yardstick repostiory to run the migration on the database:
+    ```
+    adonis migration:reset
+    adonis migration:run
+    ```
+7. The site should now be functional!
 
-### 2. Navigate to /src
+## Selenium Testing
 
-### 3. Open yardstick-archive directory and run: nodemon server.js
+A Selenium test suite is included within the repository under /src/yardstick-archive/public. To run this, the Selenium ide is a required extension from your browser. Select the Selenium extension in your browser and choose open existing project. Select the 423 Test Suite.side file. Then, the url within the .side files will need to be changed to match your working url or local host. A video showing this test suite running successfully can be found [here](https://youtu.be/ZJiIl9BfRrE). 
 
 ## Additional Technical Documentation
-The special project API runs on an adonis framework with a sqlite as the database. It requires a number of dependencies including adonisjs, sqlite3, adonis-swagger, @adonisjs-ignitor, nodemon, Node.js > 8.0.0, and NPM > 3.0.0. The project was built on a Linux platform, but can be adapted to work on other operating systems. To use the API, first clone the repository at https://github.com/ryanhansen2222/esof423-s2021. Within this repository, navigate to /src. The adonis project to use within this folder will be named /yardstick-archive. Assuming all dependencies are installed, running nodemon server.js from the command line while in the directory yardstick-archive should start the project. This will initially be set up to run on the local host, but the .env file can be modified to match the needs of the user. Upon serving the application, the home screen should display the following page:
+The special project API runs on an AdonisJS framework with a sqlite3 as the database. Upon serving the application, the home screen should display the following page:
 
 ![img1](https://user-images.githubusercontent.com/56380447/113443175-acf10000-93ae-11eb-8220-7abcea770b77.png)
 
@@ -37,7 +67,3 @@ Once a video has been posted to the site, users can comment on the video under t
 ![img4](https://user-images.githubusercontent.com/56380447/113443341-035e3e80-93af-11eb-8633-7ed07bab4482.png)
 
 The yardstick-archive repository can be copied and modified directly to meet the needs of the user. Alternatively database migrations, routes, edge files, controllers, and other required files can be used individually to meet the user’s needs from within their own adonis project.
-
-## Selenium Testing
-
-A Selenium test suite is included within the repository under /src/yardstick-archive/public. To run this, the Selenium ide is a required extension from your browser. Select the Selenium extension in your browser and choose open existing project. Select the 423 Test Suite.side file. Then, the url within the .side files will need to be changed to match your working url or local host. A video showing this test suite running successfully can be found [here](https://youtu.be/ZJiIl9BfRrE). 
