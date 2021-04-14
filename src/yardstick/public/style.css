@@ -100,3 +100,44 @@ h1 {
 .pagination a {
   padding-right:8px
 }
+
+#Like {
+  background-image: url('like.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: none !important;
+}
+
+#Dislike {
+  background-image: url('like.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+#Funny {
+  background-image: url('funny.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#Edit {
+  background: none;
+	color: black;
+	padding: 0;
+  font-size: medium;
+  font-weight: normal;
+	font: none;
+	cursor: pointer;
+}
+
+#Delete {
+  background: none;
+	color: black;
+	padding: 0;
+  font-size: medium;
+  font-weight: normal;
+	font: none;
+	cursor: pointer;
+}

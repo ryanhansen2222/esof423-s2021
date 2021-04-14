@@ -1,8 +1,8 @@
 <div class="pagination">
   @loggedIn
-  <a href="{{ route('CommentController.like', { id: comment.id }) }}"> Like </a>
-  <a href="{{ route('CommentController.dislike', { id: comment.id }) }}"> Dislike </a>
-  <a href="{{ route('CommentController.funny', {id: comment.id}) }}"> Funny </a>
+  <a href="{{ route('CommentController.like', { id: comment.id }) }}"><img id="Like" style="width:1em; height:1em;" /></a>
+  <a href="{{ route('CommentController.dislike', { id: comment.id }) }}"><img id="Dislike" style="width:1em; height:1em" /></a>
+  <a href="{{ route('CommentController.funny', {id: comment.id}) }}"><img id="Funny" style="width:1em; height:1em;" /></a>
   <br></br>
 
   @endloggedIn
