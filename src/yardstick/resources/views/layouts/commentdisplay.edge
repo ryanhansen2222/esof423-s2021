@@ -1,5 +1,6 @@
 <ul>
-  <a href="{{ route('CommentController.like', { id: comment.id }) }}">Like {{comment.likes}}</a>
+  @!component('layouts.react', comment = comment, request = request, auth = auth)
+
   @if(auth.user.id == comment.user_id)
   <a href="{{ route('CommentController.delete',{ id: comment.id }) }}">Delete</a>
   <a href="{{ route('CommentController.edit',{ id: comment.id, video_id: video.id }) }}">Edit</a>

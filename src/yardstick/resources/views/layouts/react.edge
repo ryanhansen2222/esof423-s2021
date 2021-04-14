@@ -1,0 +1,14 @@
+<div class="pagination">
+  @loggedIn
+  <a href="{{ route('CommentController.like', { id: comment.id }) }}"> Like </a>
+  <a href="{{ route('CommentController.dislike', { id: comment.id }) }}"> Dislike </a>
+  <a href="{{ route('CommentController.funny', {id: comment.id}) }}"> Funny </a>
+  <br></br>
+
+  @endloggedIn
+  <hr></hr>
+
+  <p>Likes: {{comment.likes}}   Funny: {{comment.funny}}</p>
+
+
+</div>

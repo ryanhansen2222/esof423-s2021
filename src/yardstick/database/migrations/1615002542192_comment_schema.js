@@ -11,6 +11,7 @@ class CommentSchema extends Schema {
       table.integer('video_id')
       table.integer('user_id')
       table.integer('likes')
+      table.integer('funny')
       table.timestamps()
     })
   }

@@ -97,6 +97,7 @@ class CommentController {
       user_id: comment.user_id,
       video_id: params.id,
       likes: 0,
+      funny: 0,
 
     })
 
@@ -141,6 +142,30 @@ class CommentController {
         const comment = await Comment.find(params.id);
 
             comment.likes = comment.likes + 1;
+
+
+            await comment.save();
+
+            //return response.route('VideoController.watch', { id: params.video_id });
+            return response.redirect('back');
+        }
+
+        async dislike ({ response, request, session, params }) {
+        const comment = await Comment.find(params.id);
+
+            comment.likes = comment.likes - 1;
+
+
+            await comment.save();
+
+            //return response.route('VideoController.watch', { id: params.video_id });
+            return response.redirect('back');
+        }
+
+        async like ({ response, request, session, params }) {
+        const comment = await Comment.find(params.id);
+
+            comment.funny = comment.funny + 1;
 
 
             await comment.save();

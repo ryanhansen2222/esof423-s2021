@@ -59,5 +59,8 @@ Route.post('/watchvideo/:id/', 'CommentController.create').validator('CreateComm
 Route.get('/watchvideo/edit/:id', 'CommentController.edit');
 Route.post('/watchvideo/update/:id', 'CommentController.update').validator('CreateComment');
 Route.get('/watchvideo/like/:id', 'CommentController.like');
+Route.get('/watchvideo/dislike/:id', 'CommentController.dislike');
+Route.get('/watchvideo/funny/:id', 'CommentController.funny');
+
 
 
