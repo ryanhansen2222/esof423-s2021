@@ -162,7 +162,7 @@ class CommentController {
             return response.redirect('back');
         }
 
-        async like ({ response, request, session, params }) {
+        async funny ({ response, request, session, params }) {
         const comment = await Comment.find(params.id);
 
             comment.funny = comment.funny + 1;
