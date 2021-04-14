@@ -18,14 +18,14 @@
 
 
 
-
+@loggedIn
 
 <div class="job-container">
 @if(flashMessage('message'))
 <span>{{ flashMessage('message') }}</span>
 @endif
 
-<p>HERE IS VIDEO ID {{video.id}}</p>
+
 <form action="{{ route('CommentController.create', { id: video.id }) }}" method="POST">
   {{ csrfField() }}
 
@@ -40,6 +40,7 @@
 
   <button type="submit">Comment</button>
 </form>
+@endloggedIn
 </div>
 <div>
 
