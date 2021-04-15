@@ -2,7 +2,7 @@
   @!component('layouts.react', comment = comment, request = request, auth = auth)
 
   @if(auth.user.id == comment.user_id)
-  <button href="{{ route('CommentController.delete',{ id: comment.id }) }}" style="none" id="Delete">Delete</button>
-  <button href="{{ route('CommentController.edit',{ id: comment.id, video_id: video.id }) }}" id="Edit">Edit</button>
+  <a href="{{ route('CommentController.delete',{ id: comment.id }) }}" style="none" id="Delete">Delete</a>
+  <a href="{{ route('CommentController.edit',{ id: comment.id, video_id: video.id }) }}" id="Edit">Edit</a>
   @endif
 </ul>
