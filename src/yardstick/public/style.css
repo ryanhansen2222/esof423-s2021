@@ -125,7 +125,6 @@ h1 {
   background-image: url('like.png');
   background-repeat: no-repeat;
   background-size: cover;
-  border: none !important;
 }
 
 #Dislike {
