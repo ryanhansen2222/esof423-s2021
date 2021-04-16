@@ -83,13 +83,17 @@ h1 {
   grid-template-columns: 120px auto;
 }
 
-/*.blank {
+/*
+.blank {
   width: 100px;
   height: 100px;
   border: 1px solid lightgray;
   //border-radius: 5px;
 }
 */
+
+
+/* The CSS for the generic user image. */
 .user {
   width: 100px;
   height: 100px;
@@ -99,6 +103,7 @@ h1 {
   background-size: cover;
 }
 
+/* The CSS for the generic video image. */
 .video {
   width: 100px;
   height: 100px;
@@ -117,16 +122,19 @@ h1 {
 .job-info p {
   padding-bottom:28px;
 }
+/* For adding some padding between pagination links. */
 .pagination a {
   padding-right:8px;
 }
 
+/* The CSS for the like "button" image. */
 #Like {
   background-image: url('like.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+/* The CSS for the dislike "button" image. */
 #Dislike {
   background-image: url('like.png');
   background-repeat: no-repeat;
@@ -135,12 +143,14 @@ h1 {
   transform: scaleY(-1);
 }
 
+/* The CSS for the funny "button" emoji image. */
 #Funny {
   background-image: url('funny.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+/* The CSS for the edit button. */
 #Edit {
   background-color: lightgray;
 	color: black;
@@ -153,6 +163,7 @@ h1 {
   border-style: outset;
 }
 
+/* The CSS for the delete button. */
 #Delete {
   background-color: #252525;
 	color: lightgray;
@@ -164,32 +175,3 @@ h1 {
   border: 3px outset darkslategray;
   border-style: outset;
 }
-
-/* #NextPageSolid {
-  background-image: url('next_page.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-
-}
-
-#NextPageNotSolid {
-  background-image: url('next_page_nonsolid.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-#PrevPageSolid {
-  background-image: url('next_page.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-}
-
-#PrevPageNotSolid {
-  background-image: url('next_page_nonsolid.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-} */
