@@ -47,7 +47,9 @@ specialproject is a premium video sharing service. This API is responsible for t
 
 ## Selenium Testing
 
-A Selenium test suite is included within the repository under /src/yardstick-archive/public. To run this, the Selenium ide is a required extension from your browser. Select the Selenium extension in your browser and choose open existing project. Select the 423 Test Suite.side file. Then, the url within the .side files will need to be changed to match your working url or local host. A video showing this test suite running successfully can be found [here](https://youtu.be/ZJiIl9BfRrE). 
+A Selenium test suite is included within the repository under /src/yardstick/public. To run this, the Selenium ide is a required extension from your browser. Select the Selenium extension in your browser and choose open existing project. Select the Updated ESOF 423 Test Suite.side file. Then, the url within the .side files will need to be changed to match your working url or local host. 
+
+Included in /src/yardstick/public is also another test suite named 423 Test Suite.side. This file is no longer applicable and exists for documentation purposes only. A video showing this test suite running successfully can be found [here](https://youtu.be/ZJiIl9BfRrE). 
 
 ## Additional Technical Documentation
 The special project API runs on an AdonisJS framework with a sqlite3 as the database. Upon serving the application, the home screen should display the following page:
