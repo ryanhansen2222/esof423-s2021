@@ -6,6 +6,14 @@ const User = use('App/Models/User')
 const Video = use('App/Models/Video')
 
 class CommentController {
+
+
+  async apidocs({view}){
+
+    return view.render('apidocs')
+
+
+  }
   async home({request, view}) {
 
 /*
