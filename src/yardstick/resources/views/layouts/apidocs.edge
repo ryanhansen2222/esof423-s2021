@@ -1,0 +1,62 @@
+@layout('layouts.main')
+
+  @section('title')
+  Special - Edit Comment
+  @endsection
+
+  @section('extracss')
+  {{ style('forms') }}
+  @endsection
+
+  @section('content')
+<h1> Comment API Functions </h1>
+
+<h4> Comment Crud </h4>
+<p> We paste the following controller methods into routes within .edge files
+for access to super usable database operations</p>
+
+<li> CREATE A COMMENT (automatically interprets authenticated user) </li>
+<li> form action="{{ route('CommentController.create', { id: video.id }) }}" method="POST"</li>
+<li>  This should be followed by code specifying the data in your specific comment database table.
+The video.id is the video you want to commentn on. </li>
+
+<li> DELETE A COMMENT (automatically interprets authenticated user) </li>
+<li>a href="{{ route('CommentController.delete',{ id: comment.id }) }}" style="none" id="Delete">Delete</a></li>
+<li>This html deletes your specified comment from the database (comment.id)</li>
+
+<li> EDIT A COMMENT </li>
+<li>  a href="{{ route('CommentController.edit',{ id: comment.id, video_id: video.id }) }}" id="Edit">Edit </li>
+<li> Calling this route, and passing in the comment.id and video.id takes you to a new
+view where you can update the comment text value in your database. </li>
+
+<li> REACT TO A COMMENT (Like, Dislike, Funny) </li>
+<li> LIKE: a href="{{ route('CommentController.like', { id: comment.id }) }}"</li>
+<li> DISLIKE: a href="{{ route('CommentController.dislike', { id: comment.id }) }}"</li>
+<li>FUNNY: a href="{{ route('CommentController.funny', {id: comment.id}) }}"</li>
+<li> As a component, we have bundled the above functionality into a common building block</li>
+<li> Use the following code to access each feature jointly: </li>
+<li> @ !component('layouts.react', comment = comment, request = request, auth = auth)</li>
+<li> where comment is the comment object we seek to react to </li>
+
+
+<li>User Specific View: (Only let the owner of a comment see these options</li>
+<li>@ !component('layouts.commentdisplay', comment = comment, auth = auth, video=video, presenter = 'UserDataPresenter')</li>
+<li> The parameters are comment, and video. They represent data that can be owned by a user.
+It is indeed possible to append more owned items to this list </li>
+
+
+<li> Paginated Results: (Distribute large quantity queries onto multiple pages of results)</li>
+<li>@ !component('layouts.pagination', pagination = comments, request = request, presenter = 'PaginationPresenter')</li>
+<li> The single paramater, pagination, takes in the data type you want to paginate. </li>
+
+
+
+
+
+
+
+
+
+
+
+@endsection
