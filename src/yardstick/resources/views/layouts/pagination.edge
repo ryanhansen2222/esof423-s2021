@@ -1,16 +1,15 @@
 <div class="pagination">
   <ul>
 
-      <a {{ isFirst(pagination) ? '' : 'href=?' + append(request.originalUrl(), 'page', pagination.page - 1) }}>Previous</a>
-
+<a {{ isFirst(pagination) ? '' : 'href=?' + append(request.originalUrl(), 'page', pagination.page - 1) }}><img {{ isFirst(pagination) ? 'id=PrevPageNotSolid style=width:1em;height:1em;background-image:url(\"../../../next_page_nonsolid.png\");background-repeat:no-repeat;background-size:cover;-webkit-transform:scaleX(-1);transform:scaleX(-1);' : 'id=PrevPage style=width:1em;height:1em;background-image:url(\"../../../next_page.png\");background-repeat:no-repeat;background-size:cover;-webkit-transform:scaleX(-1);transform:scaleX(-1);'}} /></a>
     @each(page in range(1, pagination.lastPage+1))
   <a {{ !isCurrent(pagination, page) ? 'href=?' + append(request.originalUrl(), 'page', page) : '' }}>
-  {{ page }}
+  <b>{{ page }}</b>
   </a>
 
     @endeach
 
-  <a {{ isLast(pagination) ? '' : 'href=?' + append(request.originalUrl(), 'page', pagination.page + 1) }}>Next</a>
+  <a {{ isLast(pagination) ? '' : 'href=?' + append(request.originalUrl(), 'page', pagination.page + 1) }}><img {{ isLast(pagination) ? 'id=NextPageNotSolid style=width:1em;height:1em;background-image:url(\"../../../next_page_nonsolid.png\");background-repeat:no-repeat;background-size:cover;' : 'id="NextPage" style=width:1em;height:1em;background-image:url(\"../../../next_page.png\");background-repeat:no-repeat;background-size:cover;'}} /></a>
 
     </ul>
 </div>
