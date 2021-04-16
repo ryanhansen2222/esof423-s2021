@@ -82,12 +82,32 @@ h1 {
   display: grid;
   grid-template-columns: 120px auto;
 }
-.blank {
+
+/*.blank {
   width: 100px;
   height: 100px;
   border: 1px solid lightgray;
-  /* border-radius: 5px; */
+  //border-radius: 5px;
 }
+*/
+.user {
+  width: 100px;
+  height: 100px;
+  border: 1px solid lightgray;
+  background-image: url('user.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.video {
+  width: 100px;
+  height: 100px;
+  border: 1px solid lightgray;
+  background-image: url('video.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .info {
   display:grid;
 }
@@ -98,7 +118,7 @@ h1 {
   padding-bottom:28px;
 }
 .pagination a {
-  padding-right:8px
+  padding-right:8px;
 }
 
 #Like {
@@ -123,21 +143,54 @@ h1 {
 }
 
 #Edit {
-  background: none;
+  background-color: lightgray;
 	color: black;
-	padding: 0;
+	padding: 5px;
   font-size: medium;
   font-weight: normal;
 	font: none;
 	cursor: pointer;
+  border: 3px outset darkslategray;
+  border-style: outset;
 }
 
 #Delete {
-  background: none;
-	color: black;
-	padding: 0;
+  background-color: #252525;
+	color: lightgray;
+	padding: 5px;
   font-size: medium;
   font-weight: normal;
 	font: none;
 	cursor: pointer;
+  border: 3px outset darkslategray;
+  border-style: outset;
 }
+
+/* #NextPageSolid {
+  background-image: url('next_page.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+#NextPageNotSolid {
+  background-image: url('next_page_nonsolid.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#PrevPageSolid {
+  background-image: url('next_page.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+#PrevPageNotSolid {
+  background-image: url('next_page_nonsolid.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+} */

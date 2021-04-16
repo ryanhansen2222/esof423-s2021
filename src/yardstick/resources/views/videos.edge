@@ -11,7 +11,7 @@ SpecialProject.io Comment Api
 <h2>Top Videos </h2>
 @each(video in videos.data)
 <div class="job-container">
-<div class="blank"></div>
+<div class="video"></div>
     <div class="info">
 
       <a href="{{ route('VideoController.watch', { id: video.id }) }}"><h4>{{ video.title }}</h4></a>
