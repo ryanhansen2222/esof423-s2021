@@ -46,15 +46,14 @@
 
   @each(video in videos)
 <div class="job-container2">
-<div class="blank"></div>
+<!-- A video div element where a video display image could go. -->
+<!-- For now, there is just a generic image in the CSS. -->
+<div class="video"></div>
 <div class="job-info">
   <h3>{{ video.title }} </h3>
   <p>{{ video.description }}</p>
-  <ul>
-    <li><a href="{{ route('VideoController.delete', { id: video.id }) }}">Delete</a></li>
-    <li><a href="{{ route('VideoController.edit', { id: video.id }) }}">Edit</a></li>
-  </ul>
+  @!component('layouts.videodisplay', auth = auth, video = video, presenter = 'UserDataPresenter')
 </div>
 </div>
   @endeach
-  @endsection
+@endsection

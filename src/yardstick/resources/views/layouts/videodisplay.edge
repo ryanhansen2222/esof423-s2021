@@ -1,0 +1,8 @@
+<ul>
+
+  @if(auth.user.id == video.user_id)
+  <!-- Buttons for the editing and deleting the video. -->
+  <button onclick="location.href = '{{ route('VideoController.delete',{ id: video.id }) }}';" id="Delete">Delete</button>
+  <button onclick="location.href = '{{ route('VideoController.edit',{ id: video.id }) }}';" id="Edit">Edit</button>
+  @endif
+</ul>

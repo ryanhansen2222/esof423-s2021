@@ -1,5 +1,6 @@
 <div class="react">
   @loggedIn
+  <!-- Linked images for liking and disliking and marking an image as funny. -->
   <a href="{{ route('CommentController.like', { id: comment.id }) }}"><img id="Like" style="width:1em; height:1em;" /></a>
   <a href="{{ route('CommentController.dislike', { id: comment.id }) }}"><img id="Dislike" style="width:1em; height:1em" /></a>
   <a href="{{ route('CommentController.funny', {id: comment.id}) }}"><img id="Funny" style="width:1em; height:1em;" /></a>
