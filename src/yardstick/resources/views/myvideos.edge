@@ -35,6 +35,14 @@
               </span>
   @endif
 
+  <label for="url">URL</label>
+  <input type="text" name="url" value="{{ old('url', '') }}">
+  @if(hasErrorFor('url'))
+  <span>
+                  {{ getErrorFor('url') }}
+              </span>
+  @endif
+
 
 
 

@@ -9,7 +9,7 @@
   @endsection
 
   @section('content')
-<h1>Edit Comment</h1>
+<h1>Edit Video</h1>
 
 <div class="job-container">
 @if(flashMessage('message'))
@@ -33,6 +33,15 @@
                   {{ getErrorFor('description') }}
               </span>
   @endif
+
+  <label for="url">URL</label>
+  <input type="text" name="url" value="{{ video.url }}">
+  @if(hasErrorFor('url'))
+  <span>
+                  {{ getErrorFor('url') }}
+              </span>
+  @endif
+
 
   <button type="submit">Submit</button><br>
 </form>

@@ -67,7 +67,7 @@ class VideoController {
 
     const posted = await auth.user.videos().create({
       title: video.title,
-      url: 'watchvideo',
+      url: video.url,
       description: video.description,
       user_id: video.user_id,
 
@@ -101,6 +101,7 @@ class VideoController {
 
         video.title = request.all().title;
         video.description = request.all().description;
+        video.url = request.all().url;
 
 
         await video.save();
