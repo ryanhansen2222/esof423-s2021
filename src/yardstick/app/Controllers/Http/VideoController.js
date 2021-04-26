@@ -5,6 +5,7 @@ const Video = use('App/Models/Video')
 const Database = use('Database')
 const User = use('App/Models/User')
 
+
 class VideoController {
 
   async base ({request, view}){
@@ -65,6 +66,7 @@ class VideoController {
   async create({ request, response, session, auth }) {
     const video = request.all();
 
+    video.url = "https://www.youtube.com/embed/" + (request.all().url).slice(32,43);
     const posted = await auth.user.videos().create({
       title: video.title,
       url: video.url,
@@ -101,7 +103,7 @@ class VideoController {
 
         video.title = request.all().title;
         video.description = request.all().description;
-        video.url = request.all().url;
+
 
 
         await video.save();
