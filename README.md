@@ -4,6 +4,8 @@ Comment API with AdonisJS Framework\
 
 [Zoom Meeting](https://us05web.zoom.us/j/9131164556?pwd=SjRjTmZLWWlQd1RQM2V4ZmR6Q0c2Zz09)
 
+[Video Demo](https://youtu.be/oWWnfb8L0hw)
+
 Contributors: Ryan Hansen, Alec VanderKolk, Alan Tong, Samuel Forbes
 
 ## Description
